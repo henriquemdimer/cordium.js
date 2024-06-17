@@ -1,0 +1,24 @@
+{
+  "name": "edwiges",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node src/test/index.ts",
+    "fix": "eslint --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@types/ws": "^8.5.10",
+    "globals": "^15.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ws": "^8.17.0"
+  }
+}

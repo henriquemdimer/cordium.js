@@ -8,13 +8,14 @@ export class Shard extends EventEmitter {
   #token: string;
   #client: Client;
   public ws?: WebSocket;
+  public id: number;
   public s: number;
   public ready: boolean;
   public ping: number;
   public lastHearbeatSent: number;
   public lastHearbeatAck: number;
 
-  public constructor(token: string, client: Client) {
+  public constructor(token: string, client: Client, id: number) {
     super();
     if (!client || !(client instanceof Client)) throw new Error('Shard(client): client is missing or invalid.');
     if (!token || typeof token !== 'string') throw new Error('Shard(token): token is missing or is not a string.');
@@ -22,6 +23,7 @@ export class Shard extends EventEmitter {
     this.#token = token;
     this.#client = client;
 
+    this.id = id;
     this.s = 0;
     this.ping = 0;
     this.ready = false;
@@ -32,7 +34,7 @@ export class Shard extends EventEmitter {
   }
 
   public connect() {
-    this.ws = new WebSocket(this.#client.options.sharding.gatewayUrl);
+    this.ws = new WebSocket(this.#client.options.sharding.gatewayUrl || '');
 
     this.ws.onopen = this.onOpen;
     this.ws.onmessage = this.onMessage;
@@ -45,7 +47,6 @@ export class Shard extends EventEmitter {
   private onMessage(msg: MessageEvent) {
     try {
       const payload = new ShardPayload(msg.data);
-
       if (payload.s) this.s = payload.s;
 
       switch (payload.op) {
@@ -63,8 +64,14 @@ export class Shard extends EventEmitter {
           this.emit('pingUpdate');
           break;
 
+        case 9:
+          this.s = 0;
+          this.identify();
+          break;
+
         case 0:
           this.onEvent(payload);
+          break;
       }
     } catch (err) {
       this.#client.emit('error', err);
@@ -103,6 +110,7 @@ export class Shard extends EventEmitter {
       v: this.#client.options.rest.apiVersion,
       compress: false,
       intents: this.#client.options.intents,
+      shard: [this.id, this.#client.options.sharding.totalShards || 1],
       properties: {
         $os: process.platform,
         $browser: 'Edwiges/1.0.0',

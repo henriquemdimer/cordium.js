@@ -7,6 +7,6 @@ export default (client: Client, shard: Shard, d: any) => {
   shard.ready = true;
   client.user = new User(client, d.user);
 
-  shard.emit('shardReady');
   client.emit('shardReady', shard);
+  shard.emit('shardReady');
 }

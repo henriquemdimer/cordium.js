@@ -3,14 +3,15 @@ import { Collection } from "../classes/Collection";
 import { Shard } from "./Shard";
 
 export interface ShardingOptions {
-  gatewayUrl: string;
+  gatewayUrl?: string;
+  totalShards?: number;
+  connectOneShardAtTime?: boolean;
 }
 
 export class GatewayManager extends Collection<Shard> {
   #client: Client;
   #token: string;
   public ping: number;
-  public options: ShardingOptions;
 
   public constructor(client: Client, token: string, options?: ShardingOptions) {
     super();
@@ -18,28 +19,35 @@ export class GatewayManager extends Collection<Shard> {
     if (!client || !(client instanceof Client)) throw new Error('GatewayManager(client): client is missing or invalid.');
     if (!token || typeof token != 'string') throw new Error('GatewayManager(token): token is missing or is not a string.');
 
-    if (options) this.options = options;
-    else this.options = {
-      gatewayUrl: 'wss://gateway.discord.gg/?v=10&encoding=json'
-    }
-
     this.#client = client;
     this.#token = token;
     this.ping = 0;
   }
 
   public init() {
-    this.spawn(0);
+    if (this.#client.options.sharding.connectOneShardAtTime === false) {
+      for (let i = 0; i < (this.#client.options.sharding.totalShards || 1); i++) {
+        this.spawn(i);
+      }
+    } else {
+      this.spawn(0);
+    }
   }
 
   public spawn(id: number) {
     let shard = super.get(id);
     if (!shard) {
-      shard = super.set(id, new Shard(this.#token, this.#client));
+      shard = super.set(id, new Shard(this.#token, this.#client, id));
 
       shard.on('shardReady', () => {
-        this.#client.ready = true;
-        this.#client.emit('ready');
+        const connectedShards = Array.from(this.values()).filter((s) => s.ready == true);
+
+        if (connectedShards.length >= (this.#client.options.sharding.totalShards || 1)) {
+          this.#client.ready = true;
+          this.#client.emit('ready');
+        } else if (this.#client.options.sharding.connectOneShardAtTime) {
+          this.spawn(id + 1);
+        }
       });
 
       shard.on('pingUpdate', () => {

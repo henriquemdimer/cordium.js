@@ -6,6 +6,8 @@ export interface ShardingOptions {
   gatewayUrl?: string;
   totalShards?: number;
   connectOneShardAtTime?: boolean;
+  firstShardId?: number;
+  lastShardId?: number;
 }
 
 export class GatewayManager extends Collection<Shard> {
@@ -26,11 +28,11 @@ export class GatewayManager extends Collection<Shard> {
 
   public init() {
     if (this.#client.options.sharding.connectOneShardAtTime === false) {
-      for (let i = 0; i < (this.#client.options.sharding.totalShards || 1); i++) {
+      for (let i = this.#client.options.sharding.firstShardId || 0; i < (this.#client.options.sharding.totalShards || 1); i++) {
         this.spawn(i);
       }
     } else {
-      this.spawn(0);
+      this.spawn(this.#client.options.sharding.firstShardId || 0);
     }
   }
 

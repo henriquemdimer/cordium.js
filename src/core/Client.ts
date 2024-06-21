@@ -34,6 +34,8 @@ export class Client extends EventEmitter {
         gatewayUrl: options?.sharding?.gatewayUrl || 'wss://gateway.discord.gg/',
         totalShards: options?.sharding?.totalShards || 1,
         connectOneShardAtTime: options?.sharding?.connectOneShardAtTime || true,
+        firstShardId: options?.sharding?.firstShardId || 0,
+        lastShardId: options?.sharding?.lastShardId || options?.sharding?.totalShards || 1
       }
     };
 

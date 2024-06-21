@@ -1,6 +1,8 @@
 import EventEmitter from "events";
-import { Client, ClientOptions } from "../Client";
-import cluster from "cluster";
+import { ClientOptions } from "../Client";
+import Cluster, { Worker } from "cluster";
+import { IPCMessage } from "../classes/IPCMessage";
+import { ClusterClient } from "./ClusterClient";
 
 export interface ClusterManagerOptions extends ClientOptions {
   clustering: {
@@ -11,16 +13,18 @@ export interface ClusterManagerOptions extends ClientOptions {
 export class ClusterManager extends EventEmitter {
   #token: string;
   public options: Partial<ClusterManagerOptions>;
+  public workers: Worker[];
 
   public constructor(token: string, options: Partial<ClusterManagerOptions>) {
     super();
 
     this.#token = token;
     this.options = options;
+    this.workers = [];
   }
 
   public async init(): Promise<this> {
-    if (cluster.isPrimary) {
+    if (Cluster.isPrimary) {
       const chunks = [];
       const shards = [];
       const sep = (this.options.sharding?.totalShards || 2) / (this.options.clustering?.totalWorkers || 1);
@@ -34,17 +38,54 @@ export class ClusterManager extends EventEmitter {
         if (chunk.length) chunks.push(chunk);
       }
 
-      for (const chunk of chunks) {
-        const worker = cluster.fork();
+      for (let i = 0; i < chunks.length; i++) {
+        const chunk = chunks[i];
+        if (!chunk) break;
 
-        worker.send({ token: this.#token, shards: chunk, total: this.options.sharding?.totalShards || 2, event: 'MASTER-INITIAL' });
-        await new Promise((resolve) => {
-          worker.on('message', resolve);
+        const worker = Cluster.fork();
+        worker.setMaxListeners(9999);
+        this.workers.push(worker);
+
+        worker.send({ index: i, token: this.#token, shards: chunk, total: this.options.sharding?.totalShards || 2, event: 'master-initial' });
+
+        worker.on('message', (message) => {
+          const msg = new IPCMessage(message);
+          if (!msg) return;
+
+          const sender = this.workers.find((w) => w.process.pid == msg.from);
+          if (!sender || !sender.process.pid) return;
+
+          switch (msg.event) {
+            case 'broadcast-request':
+              let reqsSent = 0;
+              const result: any = [];
+              const cid = IPCMessage.generateCID();
+
+              for (const worker of this.workers) {
+                worker.send(new IPCMessage({ from: 'master', to: worker.process.pid, event: 'data-request', cid, data: msg.data }))
+                reqsSent++;
+
+                const callback = (message: any) => {
+                  const response = new IPCMessage(message);
+                  if (response.cid !== cid) return;
+
+                  result.push(response.result);
+                  if (result.length >= reqsSent) {
+                    worker.removeListener('message', callback);
+                    sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', result, cid: msg.cid }));
+                  }
+                }
+
+                worker.on('message', callback);
+              }
+
+              break;
+          }
         });
       }
     } else {
       process.on('message', (msg: any) => {
-        if (msg.event == 'MASTER-INITIAL') {
+        if (msg.event == 'master-initial') {
           const options = {
             ...this.options,
             sharding: {
@@ -54,9 +95,8 @@ export class ClusterManager extends EventEmitter {
             },
           }
 
-          const client = new Client(msg.token, options);
+          const client = new ClusterClient(msg.token, options, msg.index);
           this.emit('workerSpawned', client);
-          process.send?.('ready');
         }
       })
     }

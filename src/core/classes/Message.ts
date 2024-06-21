@@ -13,7 +13,7 @@ export class Message {
 
   public constructor(client: Client, data: any) {
     if (!client || !(client instanceof Client)) throw new Error('Message(client): client is missing or invalid');
-    if (!data || !data.id || !data.content || !data.author) throw new Error('Message(data): data is missing or invalid');
+    if (!data || !data.id || !data.author) throw new Error('Message(data): data is missing or invalid');
 
     this.id = data.id;
     this.content = data.content;

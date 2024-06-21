@@ -34,7 +34,7 @@ export class Shard extends EventEmitter {
   }
 
   public connect() {
-    this.ws = new WebSocket(this.#client.options.sharding.gatewayUrl || '');
+    this.ws = new WebSocket(`${this.#client.options.sharding.gatewayUrl}?v=${this.#client.options.rest.apiVersion}&encoding=json`);
 
     this.ws.onopen = this.onOpen;
     this.ws.onmessage = this.onMessage;

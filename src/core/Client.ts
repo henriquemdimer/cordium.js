@@ -31,7 +31,7 @@ export class Client extends EventEmitter {
         alwaysSendAuthorizationHeader: options?.rest?.alwaysSendAuthorizationHeader || false
       },
       sharding: {
-        gatewayUrl: options?.sharding?.gatewayUrl || 'wss://gateway.discord.gg/?v=10&encoding=json',
+        gatewayUrl: options?.sharding?.gatewayUrl || 'wss://gateway.discord.gg/',
         totalShards: options?.sharding?.totalShards || 1,
         connectOneShardAtTime: options?.sharding?.connectOneShardAtTime || true,
       }

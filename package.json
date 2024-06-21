@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/test/index.ts",
+    "dev": "node -r sucrase/register src/test/cluster.ts",
     "fix": "eslint --fix"
   },
   "keywords": [],
@@ -13,12 +13,12 @@
   "devDependencies": {
     "@types/node": "^20.14.2",
     "@types/ws": "^8.5.10",
+    "dotenv": "^16.4.5",
     "globals": "^15.4.0",
-    "ts-node": "^10.9.2",
+    "sucrase": "^3.35.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
     "ws": "^8.17.0"
   }
 }

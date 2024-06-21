@@ -110,7 +110,7 @@ export class Shard extends EventEmitter {
       v: this.#client.options.rest.apiVersion,
       compress: false,
       intents: this.#client.options.intents,
-      shard: [this.id, this.#client.options.sharding.lastShardId],
+      shard: [this.id, (this.#client.options.sharding.lastShardId || 0)],
       properties: {
         $os: process.platform,
         $browser: 'Edwiges/1.0.0',

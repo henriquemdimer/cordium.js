@@ -3,6 +3,9 @@ import EventEmitter from "events";
 import { Client } from "../Client";
 import { MessageEvent, WebSocket } from 'ws';
 import { ShardPayload } from "../classes/ShardPayload";
+import { User } from "../classes/User";
+import { Guild } from "../classes/Guild";
+import { Message } from "../classes/Message";
 
 export class Shard extends EventEmitter {
   #token: string;
@@ -83,12 +86,21 @@ export class Shard extends EventEmitter {
     if (payload.op != 0) throw new Error('Shard.onEvent(payload): object is not a event payload');
 
     switch (payload.t) {
-      default:
-        try {
-          const event = await import(`../events/${payload.t}`);
-          if (event && event.default) event.default(this.#client, this, payload.data);
-          else this.#client.emit('unhandledEvent', (payload.t, payload.data));
-        } catch (err) { /*empty*/ }
+      case 'READY':
+        this.ready = true;
+        this.#client.user = new User(this.#client, payload.data.user);
+
+        this.#client.emit('shardReady', this);
+        this.emit('shardReady');
+        break;
+
+      case 'GUILD_CREATE':
+        const guild = new Guild(this.#client, payload.data);
+        this.#client.cache.guilds.set(guild.id, guild);
+        break;
+
+      case 'MESSAGE_CREATE':
+        this.#client.emit('messageCreate', new Message(this.#client, payload.data));
         break;
     }
   }

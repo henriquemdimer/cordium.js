@@ -1,5 +1,5 @@
 {
-  "name": "edwigesjs",
+  "name": "cordium.js",
   "version": "0.0.1",
   "description": "A multi-threaded package for interacting with the Discord API.",
   "main": "index.js",
@@ -24,10 +24,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devdimer/edwiges.git"
+    "url": "git+https://github.com/devdimer/cordium.js.git"
   },
   "keywords": [
     "discord",
+    "discordjs",
+    "discord.js",
+    "discordbot",
+    "discordapp",
     "wrapper",
     "multi-threaded",
     "clusterized",
@@ -36,7 +40,7 @@
   "author": "Henrique Müller Dimer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/devdimer/edwiges/issues"
+    "url": "https://github.com/devdimer/cordium.js/issues"
   },
-  "homepage": "https://github.com/devdimer/edwiges#readme"
+  "homepage": "https://github.com/devdimer/cordium.js#readme"
 }

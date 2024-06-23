@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from "../Client";
+import { ChannelTypes } from "../Constants";
 import { Collection } from "../classes/Collection";
 import { Guild } from "../classes/Guild";
 import { GuildChannel } from "../classes/GuildChannel";
 import { TextChannel } from "../classes/TextChannel";
-import { ChannelTypes } from "../constants/ChannelTypes";
 
 export class GuildChannelManager extends Collection<GuildChannel> {
   public constructor(client: Client, guild: Guild, channels?: any[]) {

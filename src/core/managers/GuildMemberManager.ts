@@ -16,6 +16,7 @@ export class GuildMemberManager extends Collection<GuildMember> {
       for (const Member of members) {
         const member = new GuildMember(client, guild, Member);
         this.set(member.user.id, member);
+        client.cache.users.set(member.user.id, member.user);
       }
     }
   }

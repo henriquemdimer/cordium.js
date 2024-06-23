@@ -3,7 +3,6 @@ import EventEmitter from "events";
 import { Client } from "../Client";
 import { MessageEvent, WebSocket } from 'ws';
 import { ShardPayload } from "../classes/ShardPayload";
-import { User } from "../classes/User";
 import { Guild } from "../classes/Guild";
 import { Message } from "../classes/Message";
 
@@ -88,8 +87,6 @@ export class Shard extends EventEmitter {
     switch (payload.t) {
       case 'READY':
         this.ready = true;
-        this.#client.user = new User(this.#client, payload.data.user);
-
         this.#client.emit('shardReady', this);
         this.emit('shardReady');
         break;

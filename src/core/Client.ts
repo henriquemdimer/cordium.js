@@ -46,7 +46,18 @@ export class Client extends EventEmitter {
     this.cache = new ClientCache(this);
   }
 
-  public init() {
-    this.shards.init();
+  public async init() {
+    try {
+      const me = await this.rest.request({
+        method: 'get',
+        endpoint: '/users/@me',
+        auth: true
+      });
+
+      this.user = new User(this, me);
+      this.shards.init();
+    } catch (_) {
+      console.log(_);
+    }
   }
 }

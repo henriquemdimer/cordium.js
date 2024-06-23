@@ -1,24 +1,39 @@
 {
-  "name": "edwiges",
-  "version": "1.0.0",
+  "name": "edwigesjs",
+  "version": "0.0.1",
+  "description": "A multi-threaded package for interacting with the Discord API.",
   "main": "index.js",
-  "scripts": {
-    "dev": "node -r sucrase/register src/test/cluster.ts",
-    "fix": "eslint --fix"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@types/node": "^20.14.2",
     "@types/ws": "^8.5.10",
     "dotenv": "^16.4.5",
     "globals": "^15.4.0",
     "sucrase": "^3.35.0",
+    "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "ws": "^8.17.0"
-  }
+  },
+  "scripts": {
+    "dev": "node -r sucrase/register",
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devdimer/edwiges.git"
+  },
+  "keywords": [
+    "discord",
+    "wrapper",
+    "multi-threaded",
+    "clusterized",
+    "api"
+  ],
+  "author": "Henrique Müller Dimer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devdimer/edwiges/issues"
+  },
+  "homepage": "https://github.com/devdimer/edwiges#readme"
 }

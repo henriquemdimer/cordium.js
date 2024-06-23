@@ -41,7 +41,7 @@ export class Client extends EventEmitter {
 
     this.#token = token;
     this.rest = new RequestManager(this.#token, this.options.rest);
-    this.shards = new GatewayManager(this, this.#token, this.options.sharding);
+    this.shards = new GatewayManager(this, this.#token);
     this.ready = false;
     this.cache = new ClientCache(this);
   }

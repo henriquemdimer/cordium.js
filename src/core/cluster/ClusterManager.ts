@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import EventEmitter from "events";
 import { ClientOptions } from "../Client";
 import Cluster, { Worker } from "cluster";
@@ -56,7 +57,7 @@ export class ClusterManager extends EventEmitter {
           if (!sender || !sender.process.pid) return;
 
           switch (msg.event) {
-            case 'broadcast-request':
+            case 'broadcast-request': {
               let reqsSent = 0;
               const result: any = [];
               const cid = IPCMessage.generateCID();
@@ -80,6 +81,7 @@ export class ClusterManager extends EventEmitter {
               }
 
               break;
+            }
           }
         });
       }

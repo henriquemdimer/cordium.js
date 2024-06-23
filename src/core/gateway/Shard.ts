@@ -94,10 +94,11 @@ export class Shard extends EventEmitter {
         this.emit('shardReady');
         break;
 
-      case 'GUILD_CREATE':
+      case 'GUILD_CREATE': {
         const guild = new Guild(this.#client, payload.data);
         this.#client.cache.guilds.set(guild.id, guild);
         break;
+      }
 
       case 'MESSAGE_CREATE':
         this.#client.emit('messageCreate', new Message(this.#client, payload.data));

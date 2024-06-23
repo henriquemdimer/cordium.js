@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import EventEmitter from "events";
 import { IPCMessage } from "../classes/IPCMessage";
 import VM from 'node:vm';
@@ -19,7 +20,7 @@ export class IPC extends EventEmitter {
 
       this.emit('message', msg);
       switch (msg.event) {
-        case 'data-request':
+        case 'data-request': {
           if (!msg.data) return;
 
           const context = { client: this.#client };
@@ -28,6 +29,7 @@ export class IPC extends EventEmitter {
           const result = VM.runInContext(msg.data, context);
           this.reply(msg.from, msg.cid, 'data-response', result);
           break;
+        }
       }
     });
   }

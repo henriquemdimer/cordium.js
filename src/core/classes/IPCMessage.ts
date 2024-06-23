@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IResult {
   workerPid: number;
   workerId: number;

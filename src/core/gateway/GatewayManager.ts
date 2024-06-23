@@ -15,7 +15,7 @@ export class GatewayManager extends Collection<Shard> {
   #token: string;
   public ping: number;
 
-  public constructor(client: Client, token: string, options?: ShardingOptions) {
+  public constructor(client: Client, token: string) {
     super();
 
     if (!client || !(client instanceof Client)) throw new Error('GatewayManager(client): client is missing or invalid.');

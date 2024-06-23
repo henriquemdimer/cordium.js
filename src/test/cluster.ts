@@ -1,11 +1,10 @@
-import { Client } from "../core/Client";
 import { Message } from "../core/classes/Message";
 import { ClusterManager } from "../core/cluster/ClusterManager";
 import 'dotenv/config';
 import ping from "./commands/ping";
-import { Intents } from "../core/constants/Intents";
-import { IPCMessage } from "../core/classes/IPCMessage";
 import { ClusterClient } from "../core/cluster/ClusterClient";
+import evalCommand from "./commands/eval";
+import { Intents } from "../";
 
 (async () => {
   const manager = new ClusterManager(process.env.TOKEN || "", {
@@ -13,7 +12,7 @@ import { ClusterClient } from "../core/cluster/ClusterClient";
       totalWorkers: 2
     },
     sharding: {
-      totalShards: 10,
+      totalShards: 2,
       connectOneShardAtTime: false
     },
     intents: [Intents.ALL]
@@ -27,8 +26,8 @@ import { ClusterClient } from "../core/cluster/ClusterClient";
 
     client.on('messageCreate', async (msg: Message) => {
       if (msg.content.startsWith('!ping')) {
-        ping(client, msg);
-      }
+        await ping(client, msg);
+      } else if (msg.content.startsWith('!eval')) await evalCommand(client, msg);
     });
 
     client.on('error', (e) => console.log(e));

@@ -2,6 +2,8 @@ import { Client, Intents } from '../';
 import { Message } from '../core/classes/Message';
 import 'dotenv/config';
 import { Shard } from '../core/gateway/Shard';
+import ping from './commands/ping';
+import evalCommand from './commands/eval';
 
 (async () => {
   const client = new Client(process.env.TOKEN || '', {
@@ -9,8 +11,8 @@ import { Shard } from '../core/gateway/Shard';
       Intents.ALL
     ],
     sharding: {
-      totalShards: 5,
-      connectOneShardAtTime: false
+      totalShards: 1,
+      connectOneShardAtTime: false,
     }
   });
   client.init();
@@ -24,9 +26,9 @@ import { Shard } from '../core/gateway/Shard';
   })
 
   client.on('messageCreate', async (msg: Message) => {
-    if (msg.content.startsWith('!')) {
-      await msg.channel?.send(`ping: ${client.shards.ping}ms`);
-      await msg.channel?.send(`shards: ${client.shards.size}`);
-    }
+    if (msg.content.startsWith('!ping')) {
+      console.log(msg.author);
+      await ping(client, msg);
+    } else if (msg.content.startsWith('!eval')) evalCommand(client, msg);
   });
 })();

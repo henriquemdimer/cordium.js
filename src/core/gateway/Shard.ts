@@ -5,6 +5,7 @@ import { MessageEvent, WebSocket } from 'ws';
 import { ShardPayload } from '../classes/ShardPayload';
 import { Guild } from '../classes/Guild';
 import { Message } from '../classes/Message';
+import { TextChannel } from '../classes/TextChannel';
 
 export class Shard extends EventEmitter {
   #token: string;
@@ -98,7 +99,15 @@ export class Shard extends EventEmitter {
     }
 
     case 'MESSAGE_CREATE':
-      this.#client.emit('messageCreate', new Message(this.#client, payload.data));
+      const message = new Message(this.#client, payload.data);
+
+      const guild = this.#client.cache.guilds.get(payload.data.guild_id);
+      if(guild) {
+        const channel = guild.cache.channels.get<TextChannel>(payload.data.channel_id);
+        if(channel) channel.cache.messages.set(message.id, message);
+      }
+
+      this.#client.emit('messageCreate', message);
       break;
     }
   }

@@ -20,7 +20,8 @@
   },
   "scripts": {
     "dev": "node -r sucrase/register",
-    "build": "tsup"
+    "build": "tsup",
+    "lint": "eslint ./src"
   },
   "repository": {
     "type": "git",

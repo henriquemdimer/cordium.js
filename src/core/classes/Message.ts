@@ -5,20 +5,30 @@ import { TextChannel } from "./TextChannel";
 import { User } from "./User";
 
 export class Message {
+  #client: Client
   public id: string;
   public content: string | null;
   public author: User;
-  public guild: Guild | null;
-  public channel?: TextChannel | null;
+  public guildId: string;
+  public channelId: string;
 
   public constructor(client: Client, data: any) {
     if (!client || !(client instanceof Client)) throw new Error('Message(client): client is missing or invalid');
     if (!data || !data.id || !data.author) throw new Error('Message(data): data is missing or invalid');
 
+    this.#client = client;
     this.id = data.id;
     this.content = data.content || null;
     this.author = new User(client, data.author);
-    this.guild = client.cache.guilds.get(data.guild_id);
-    if (this.guild) this.channel = this.guild.cache.channels.get<TextChannel>(data.channel_id) || null;
+    this.guildId = data.guild_id;
+    this.channelId = data.channel_id;
+  }
+
+  get guild(): Guild | null {
+    return this.#client.cache.guilds.get(this.guildId); 
+  }
+
+  get channel(): TextChannel | null {
+    return this.guild?.cache.channels.get(this.channelId) || null;
   }
 }

@@ -2,7 +2,7 @@
 import EventEmitter from "events";
 import { ClientOptions } from "../Client";
 import Cluster, { Worker } from "cluster";
-import { IPCMessage } from "../classes/IPCMessage";
+import { IPCMessage, IResult } from "../classes/IPCMessage";
 import { ClusterClient } from "./ClusterClient";
 
 export interface ClusterManagerOptions extends ClientOptions {
@@ -59,7 +59,7 @@ export class ClusterManager extends EventEmitter {
           switch (msg.event) {
             case 'broadcast-request': {
               let reqsSent = 0;
-              const result: any = [];
+              const result: IResult[] = [];
               const cid = IPCMessage.generateCID();
 
               for (const worker of this.workers) {
@@ -68,12 +68,12 @@ export class ClusterManager extends EventEmitter {
 
                 const callback = (message: any) => {
                   const response = new IPCMessage(message);
-                  if (response.cid !== cid) return;
+                  if (response.cid !== cid || response.result == undefined) return;
 
                   result.push(response.result);
                   if (result.length >= reqsSent) {
                     worker.removeListener('message', callback);
-                    sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', result, cid: msg.cid }));
+                    sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', data: result, cid: msg.cid }));
                   }
                 }
 

@@ -10,7 +10,7 @@ export interface IIPCMessage {
   to?: number | string | null;
   event: string;
   cid: string;
-  data?: string | null;
+  data?: any | null;
   result?: IResult | null;
 }
 
@@ -19,7 +19,7 @@ export class IPCMessage {
   public to?: number | string | null;
   public event?: string | null;
   public cid: string;
-  public data?: string | null;
+  public data?: any;
   public result?: IResult | null;
 
   public constructor(options: IIPCMessage) {

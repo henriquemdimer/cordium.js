@@ -52,7 +52,7 @@ export class IPC extends EventEmitter {
         if (!response || !response.cid || response.cid !== id) return;
 
         process.removeListener('message', callback);
-        resolve(response.result);
+        resolve(response.data);
       }
 
       process.on('message', callback);

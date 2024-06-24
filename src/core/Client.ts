@@ -40,7 +40,7 @@ export class Client extends EventEmitter {
     };
 
     this.#token = token;
-    this.rest = new RequestManager(this.#token, this.options.rest);
+    this.rest = new RequestManager(this, this.#token);
     this.shards = new GatewayManager(this, this.#token);
     this.ready = false;
     this.cache = new ClientCache(this);

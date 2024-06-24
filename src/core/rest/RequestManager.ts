@@ -1,6 +1,7 @@
 import { request } from "https";
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Client } from "../Client";
+
 export type HTTP_METHODS = 'get' | 'GET' | 'post' | 'POST' | 'delete' | 'DELETE' | 'patch' | 'PATCH';
 
 export interface RequestOptions {
@@ -17,20 +18,15 @@ export interface RequestManagerOptions {
 }
 
 export class RequestManager {
-
   #token: string;
-  public options: RequestManagerOptions;
+  #client: Client;
 
-  public constructor(token: string, options?: RequestManagerOptions) {
+  public constructor(client: Client, token: string) {
     if (!token || typeof token !== 'string') throw new Error('RequestManager(token): token is missing or is not a string.');
+    if (!client || !(client instanceof Client)) throw new Error('RequestManager(client): client is missing or invalid');
 
     this.#token = token;
-
-    if (options) this.options = options;
-    else this.options = {
-      apiVersion: '10',
-      alwaysSendAuthorizationHeader: false
-    }
+    this.#client = client;
   }
 
   public request(options: RequestOptions) {
@@ -39,10 +35,10 @@ export class RequestManager {
 
       const requestOptions = {
         host: 'discord.com',
-        path: `/api/v${this.options.apiVersion}/${options.endpoint}`,
+        path: `/api/v${this.#client.options.rest.apiVersion}/${options.endpoint}`,
         method: options.method,
         headers: {
-          'Authorization': `${options.auth ? `Bot ${this.#token}` : this.options.alwaysSendAuthorizationHeader ? `Bot ${this.#token}` : ''}`,
+          'Authorization': `${options.auth ? `Bot ${this.#token}` : this.#client.options.rest.alwaysSendAuthorizationHeader ? `Bot ${this.#token}` : ''}`,
           'Content-Type': 'application/json',
           'User-Agent': 'Edwiges/1.0.0',
           ...options.headers,

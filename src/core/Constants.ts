@@ -12,7 +12,7 @@ export const ChannelTypes = {
   'GUILD_DIRECTORY': 14,
   'GUILD_FORUM': 15,
   'GUILD_MEDIA': 16
-}
+};
 
 export const Intents = {
   'GUILD': 1 << 0,
@@ -37,6 +37,6 @@ export const Intents = {
   'GUILD_MESSAGE_POLLS': 1 << 24,
   'DIRECT_MESSAGE_POLLS': 1 << 25,
   'ALL': 131071
-}
+};
 
 

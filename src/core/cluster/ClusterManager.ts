@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventEmitter from "events";
-import { ClientOptions } from "../Client";
-import Cluster, { Worker } from "cluster";
-import { IPCMessage, IResult } from "../classes/IPCMessage";
-import { ClusterClient } from "./ClusterClient";
+import EventEmitter from 'events';
+import { ClientOptions } from '../Client';
+import Cluster, { Worker } from 'cluster';
+import { IPCMessage, IResult } from '../classes/IPCMessage';
+import { ClusterClient } from './ClusterClient';
 
 export interface ClusterManagerOptions extends ClientOptions {
   clustering: {
@@ -57,31 +57,31 @@ export class ClusterManager extends EventEmitter {
           if (!sender || !sender.process.pid) return;
 
           switch (msg.event) {
-            case 'broadcast-request': {
-              let reqsSent = 0;
-              const result: IResult[] = [];
-              const cid = IPCMessage.generateCID();
+          case 'broadcast-request': {
+            let reqsSent = 0;
+            const result: IResult[] = [];
+            const cid = IPCMessage.generateCID();
 
-              for (const worker of this.workers) {
-                worker.send(new IPCMessage({ from: 'master', to: worker.process.pid, event: 'data-request', cid, data: msg.data }))
-                reqsSent++;
+            for (const worker of this.workers) {
+              worker.send(new IPCMessage({ from: 'master', to: worker.process.pid, event: 'data-request', cid, data: msg.data }));
+              reqsSent++;
 
-                const callback = (message: any) => {
-                  const response = new IPCMessage(message);
-                  if (response.cid !== cid || response.result == undefined) return;
+              const callback = (message: any) => {
+                const response = new IPCMessage(message);
+                if (response.cid !== cid || response.result == undefined) return;
 
-                  result.push(response.result);
-                  if (result.length >= reqsSent) {
-                    worker.removeListener('message', callback);
-                    sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', data: result, cid: msg.cid }));
-                  }
+                result.push(response.result);
+                if (result.length >= reqsSent) {
+                  worker.removeListener('message', callback);
+                  sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', data: result, cid: msg.cid }));
                 }
+              };
 
-                worker.on('message', callback);
-              }
-
-              break;
+              worker.on('message', callback);
             }
+
+            break;
+          }
           }
         });
       }
@@ -95,12 +95,12 @@ export class ClusterManager extends EventEmitter {
               firstShardId: msg.shards[0],
               lastShardId: msg.total,
             },
-          }
+          };
 
           const client = new ClusterClient(msg.token, options, msg.index);
           this.emit('workerSpawned', client);
         }
-      })
+      });
     }
 
     return this;

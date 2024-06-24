@@ -1,5 +1,5 @@
-import { Client, ClientOptions } from "../Client";
-import { IPC } from "./IPC";
+import { Client, ClientOptions } from '../Client';
+import { IPC } from './IPC';
 
 export class ClusterClient extends Client {
   public ipc: IPC;

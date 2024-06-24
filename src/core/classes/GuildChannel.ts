@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { Guild } from "./Guild";
+import { Client } from '../Client';
+import { Guild } from './Guild';
 
 export class GuildChannel {
   public id: string;

@@ -23,7 +23,7 @@ import evalCommand from './commands/eval';
 
   client.on('shardReady', (shard: Shard) => {
     console.log(`Shard ready: ${shard.id}`);
-  })
+  });
 
   client.on('messageCreate', async (msg: Message) => {
     if (msg.content.startsWith('!ping')) {

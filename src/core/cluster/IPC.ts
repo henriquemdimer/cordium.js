@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventEmitter from "events";
-import { IPCMessage } from "../classes/IPCMessage";
+import EventEmitter from 'events';
+import { IPCMessage } from '../classes/IPCMessage';
 import VM from 'node:vm';
-import { ClusterClient } from "./ClusterClient";
+import { ClusterClient } from './ClusterClient';
 
 export class IPC extends EventEmitter {
   #client: ClusterClient;
@@ -20,22 +20,22 @@ export class IPC extends EventEmitter {
 
       this.emit('message', msg);
       switch (msg.event) {
-        case 'data-request': {
-          if (!msg.data) return;
+      case 'data-request': {
+        if (!msg.data) return;
 
-          const context = { client: this.#client };
-          VM.createContext(context);
+        const context = { client: this.#client };
+        VM.createContext(context);
 
-          const result = VM.runInContext(msg.data, context);
-          this.reply(msg.from, msg.cid, 'data-response', result);
-          break;
-        }
+        const result = VM.runInContext(msg.data, context);
+        this.reply(msg.from, msg.cid, 'data-response', result);
+        break;
+      }
       }
     });
   }
 
   public reply(to: number | string, cid: string, event: string, result: any) {
-    process.send?.(new IPCMessage({ to, cid, result: { workerPid: this.pid, workerId: this.#client.workerId, data: result }, from: this.pid, event }))
+    process.send?.(new IPCMessage({ to, cid, result: { workerPid: this.pid, workerId: this.#client.workerId, data: result }, from: this.pid, event }));
   }
 
   public send(to: number | string, cid: string, data: any, event: string) {
@@ -53,7 +53,7 @@ export class IPC extends EventEmitter {
 
         process.removeListener('message', callback);
         resolve(response.data);
-      }
+      };
 
       process.on('message', callback);
     });

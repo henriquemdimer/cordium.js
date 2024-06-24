@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { GuildCache } from "../cache/GuildCache";
+import { Client } from '../Client';
+import { GuildCache } from '../cache/GuildCache';
 
 export class Guild {
   public id: string;

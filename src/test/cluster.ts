@@ -1,13 +1,13 @@
-import { Message } from "../core/classes/Message";
-import { ClusterManager } from "../core/cluster/ClusterManager";
+import { Message } from '../core/classes/Message';
+import { ClusterManager } from '../core/cluster/ClusterManager';
 import 'dotenv/config';
-import ping from "./commands/ping";
-import { ClusterClient } from "../core/cluster/ClusterClient";
-import evalCommand from "./commands/eval";
-import { Intents } from "../";
+import ping from './commands/ping';
+import { ClusterClient } from '../core/cluster/ClusterClient';
+import evalCommand from './commands/eval';
+import { Intents } from '../';
 
 (async () => {
-  const manager = new ClusterManager(process.env.TOKEN || "", {
+  const manager = new ClusterManager(process.env.TOKEN || '', {
     clustering: {
       totalWorkers: 2
     },
@@ -33,5 +33,5 @@ import { Intents } from "../";
     client.on('error', (e) => console.log(e));
 
     client.init();
-  })
+  });
 })();

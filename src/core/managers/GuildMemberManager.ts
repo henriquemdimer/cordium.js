@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { Collection } from "../classes/Collection";
-import { Guild } from "../classes/Guild";
-import { GuildMember } from "../classes/GuildMember";
+import { Client } from '../Client';
+import { Collection } from '../classes/Collection';
+import { Guild } from '../classes/Guild';
+import { GuildMember } from '../classes/GuildMember';
 
 export class GuildMemberManager extends Collection<GuildMember> {
   public constructor(client: Client, guild: Guild, members?: any[]) {

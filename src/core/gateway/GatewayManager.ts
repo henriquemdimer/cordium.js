@@ -1,6 +1,6 @@
-import { Client } from "../Client";
-import { Collection } from "../classes/Collection";
-import { Shard } from "./Shard";
+import { Client } from '../Client';
+import { Collection } from '../classes/Collection';
+import { Shard } from './Shard';
 
 export interface ShardingOptions {
   gatewayUrl?: string;
@@ -60,7 +60,7 @@ export class GatewayManager extends Collection<Shard> {
         }
 
         this.ping = ping / this.size;
-      })
+      });
     }
 
     if (shard) {

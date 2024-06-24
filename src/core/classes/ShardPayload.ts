@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Data } from "ws";
+import { Data } from 'ws';
 
 export class ShardPayload {
   public op: number;

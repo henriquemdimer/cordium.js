@@ -1,6 +1,6 @@
-import { request } from "https";
+import { request } from 'https';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
+import { Client } from '../Client';
 
 export type HTTP_METHODS = 'get' | 'GET' | 'post' | 'POST' | 'delete' | 'DELETE' | 'patch' | 'PATCH';
 
@@ -60,7 +60,7 @@ export class RequestManager {
             } else {
               reject(JSON.parse(body));
             }
-          })
+          });
         });
 
         if (options.body) {

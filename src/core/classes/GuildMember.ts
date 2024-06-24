@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { Guild } from "./Guild";
-import { User } from "./User";
+import { Client } from '../Client';
+import { Guild } from './Guild';
+import { User } from './User';
 
 export class GuildMember {
   public user: User;
@@ -34,7 +34,7 @@ export class GuildMember {
     this.mute = data.mute;
     this.flags = data.flags || 0;
     this.pending = data.pending || false;
-    this.permissions = data.permission || null
+    this.permissions = data.permission || null;
     this.communicationDisabledUntil = data.communication_disabled_until;
     this.avatarDecorationData = data.avatar_decoration_data || null;
   }

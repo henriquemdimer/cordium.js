@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { Guild } from "../classes/Guild";
-import { GuildChannelManager } from "../managers/GuildChannelManager";
-import { GuildMemberManager } from "../managers/GuildMemberManager";
+import { Client } from '../Client';
+import { Guild } from '../classes/Guild';
+import { GuildChannelManager } from '../managers/GuildChannelManager';
+import { GuildMemberManager } from '../managers/GuildMemberManager';
 
 export class GuildCache {
   public members: GuildMemberManager;

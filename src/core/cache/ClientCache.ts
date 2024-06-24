@@ -1,6 +1,6 @@
-import { Client } from "../Client";
-import { GuildManager } from "../managers/GuildManager";
-import { UserManager } from "../managers/UserManager";
+import { Client } from '../Client';
+import { GuildManager } from '../managers/GuildManager';
+import { UserManager } from '../managers/UserManager';
 
 export class ClientCache {
   public guilds: GuildManager;

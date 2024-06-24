@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
+import { Client } from '../Client';
 
 export class User {
   public id: string;

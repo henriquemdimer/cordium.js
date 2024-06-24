@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { Guild } from "./Guild";
-import { GuildChannel } from "./GuildChannel";
-import { Message } from "./Message";
+import { Client } from '../Client';
+import { Guild } from './Guild';
+import { GuildChannel } from './GuildChannel';
+import { Message } from './Message';
 
 export class TextChannel extends GuildChannel {
   public lastMessageId?: string;

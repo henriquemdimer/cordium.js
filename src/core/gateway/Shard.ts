@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventEmitter from "events";
-import { Client } from "../Client";
+import EventEmitter from 'events';
+import { Client } from '../Client';
 import { MessageEvent, WebSocket } from 'ws';
-import { ShardPayload } from "../classes/ShardPayload";
-import { Guild } from "../classes/Guild";
-import { Message } from "../classes/Message";
+import { ShardPayload } from '../classes/ShardPayload';
+import { Guild } from '../classes/Guild';
+import { Message } from '../classes/Message';
 
 export class Shard extends EventEmitter {
   #token: string;
@@ -52,28 +52,28 @@ export class Shard extends EventEmitter {
       if (payload.s) this.s = payload.s;
 
       switch (payload.op) {
-        case 10:
-          if (payload.data.heartbeat_interval && payload.data.heartbeat_interval > 0) {
-            this.startHeartbeating(payload.data.heartbeat_interval);
-          }
+      case 10:
+        if (payload.data.heartbeat_interval && payload.data.heartbeat_interval > 0) {
+          this.startHeartbeating(payload.data.heartbeat_interval);
+        }
 
-          this.identify();
-          break;
+        this.identify();
+        break;
 
-        case 11:
-          this.lastHearbeatAck = Date.now();
-          this.ping = this.lastHearbeatAck - this.lastHearbeatSent;
-          this.emit('pingUpdate');
-          break;
+      case 11:
+        this.lastHearbeatAck = Date.now();
+        this.ping = this.lastHearbeatAck - this.lastHearbeatSent;
+        this.emit('pingUpdate');
+        break;
 
-        case 9:
-          this.s = 0;
-          this.identify();
-          break;
+      case 9:
+        this.s = 0;
+        this.identify();
+        break;
 
-        case 0:
-          this.onEvent(payload);
-          break;
+      case 0:
+        this.onEvent(payload);
+        break;
       }
     } catch (err) {
       this.#client.emit('error', err);
@@ -85,21 +85,21 @@ export class Shard extends EventEmitter {
     if (payload.op != 0) throw new Error('Shard.onEvent(payload): object is not a event payload');
 
     switch (payload.t) {
-      case 'READY':
-        this.ready = true;
-        this.#client.emit('shardReady', this);
-        this.emit('shardReady');
-        break;
+    case 'READY':
+      this.ready = true;
+      this.#client.emit('shardReady', this);
+      this.emit('shardReady');
+      break;
 
-      case 'GUILD_CREATE': {
-        const guild = new Guild(this.#client, payload.data);
-        this.#client.cache.guilds.set(guild.id, guild);
-        break;
-      }
+    case 'GUILD_CREATE': {
+      const guild = new Guild(this.#client, payload.data);
+      this.#client.cache.guilds.set(guild.id, guild);
+      break;
+    }
 
-      case 'MESSAGE_CREATE':
-        this.#client.emit('messageCreate', new Message(this.#client, payload.data));
-        break;
+    case 'MESSAGE_CREATE':
+      this.#client.emit('messageCreate', new Message(this.#client, payload.data));
+      break;
     }
   }
 

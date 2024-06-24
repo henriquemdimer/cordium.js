@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Client } from "../Client";
-import { Guild } from "./Guild";
-import { TextChannel } from "./TextChannel";
-import { User } from "./User";
+import { Client } from '../Client';
+import { Guild } from './Guild';
+import { TextChannel } from './TextChannel';
+import { User } from './User';
 
 export class Message {
-  #client: Client
+  #client: Client;
   public id: string;
   public content: string | null;
   public author: User;

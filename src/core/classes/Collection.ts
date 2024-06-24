@@ -13,4 +13,20 @@ export class Collection<T = {}> extends Map {
     super.set(key, value);
     return value;
   }
+
+  public toArray() {
+    return Array.from(this.values());
+  }
+
+  public first() {
+    return this.toArray()[0];
+  }
+
+  public last() {
+    return this.toArray()[this.size - 1];
+  }
+
+  public random() {
+    return this.toArray()[Math.floor(Math.random() * this.size)];
+  }
 }

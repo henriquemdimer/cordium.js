@@ -5,8 +5,8 @@ import { User } from "./User";
 
 export class GuildMember {
   public user: User;
-  public nick?: string;
-  public avatar?: string;
+  public nick: string | null;
+  public avatar: string | null;
   public roles: any;
   public joinedAt: string;
   public premiumSince?: string;
@@ -14,7 +14,7 @@ export class GuildMember {
   public mute: boolean;
   public flags: number;
   public pending: boolean;
-  public permissions?: string;
+  public permissions: string | null;
   public communicationDisabledUntil?: string;
   public avatarDecorationData?: any;
   public guild: Guild;
@@ -25,14 +25,14 @@ export class GuildMember {
 
     this.user = new User(client, data.user);
     this.guild = guild;
-    this.nick = data.nick;
+    this.nick = data.nick || null;
     this.avatar = data.avatar;
     this.roles = data.roles;
     this.joinedAt = data.joined_at;
     this.premiumSince = data.premium_since || null;
     this.deaf = data.deaf;
     this.mute = data.mute;
-    this.flags = data.flags;
+    this.flags = data.flags || 0;
     this.pending = data.pending || false;
     this.permissions = data.permission || null
     this.communicationDisabledUntil = data.communication_disabled_until;

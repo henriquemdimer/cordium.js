@@ -8,7 +8,7 @@ export class GuildChannel {
   public type: number;
   public nsfw: boolean;
   public position: number;
-  public topic?: string;
+  public topic?: string | null;
   public guild: Guild;
 
   public constructor(client: Client, guild: Guild, data: any) {
@@ -20,7 +20,7 @@ export class GuildChannel {
     this.type = data.type;
     this.nsfw = data.nsfw || false;
     this.position = data.position;
-    this.topic = data.topic;
+    this.topic = data.topic || null;
     this.guild = guild;
   }
 }

@@ -21,7 +21,8 @@
   "scripts": {
     "dev": "node -r sucrase/register",
     "build": "tsup",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",

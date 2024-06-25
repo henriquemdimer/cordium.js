@@ -4,6 +4,7 @@ import { ClientOptions } from '../Client';
 import Cluster, { Worker } from 'cluster';
 import { IPCMessage, IResult } from '../classes/IPCMessage';
 import { ClusterClient } from './ClusterClient';
+import { Observable } from '../classes/Observable';
 
 export interface ClusterManagerOptions extends ClientOptions {
   clustering: {
@@ -11,14 +12,15 @@ export interface ClusterManagerOptions extends ClientOptions {
   }
 }
 
-export class ClusterManager extends EventEmitter {
+export class ClusterManager {
   #token: string;
   public options: Partial<ClusterManagerOptions>;
   public workers: Worker[];
+  public events = {
+    workerSpawned: new Observable<ClusterClient>(),
+  };
 
   public constructor(token: string, options: Partial<ClusterManagerOptions>) {
-    super();
-
     this.#token = token;
     this.options = options;
     this.workers = [];
@@ -98,7 +100,7 @@ export class ClusterManager extends EventEmitter {
           };
 
           const client = new ClusterClient(msg.token, options, msg.index);
-          this.emit('workerSpawned', client);
+          this.events.workerSpawned.notify(client);
         }
       });
     }

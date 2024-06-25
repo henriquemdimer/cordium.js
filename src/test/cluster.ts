@@ -1,4 +1,3 @@
-import { Message } from '../core/classes/Message';
 import { ClusterManager } from '../core/cluster/ClusterManager';
 import 'dotenv/config';
 import ping from './commands/ping';
@@ -18,19 +17,16 @@ import { Intents } from '../';
     intents: [Intents.ALL]
   });
 
-  (await manager.init()).on('workerSpawned', (client: ClusterClient) => {
-    console.log('workerSpawned', process.pid);
-    client.on('ready', () => {
+  (await manager.init()).events.workerSpawned.subscribe((client: ClusterClient) => {
+    client.events.ready.subscribe(() => {
       console.log(client.user?.username, 'is ready', 'PID =', process.pid);
     });
 
-    client.on('messageCreate', async (msg: Message) => {
-      if (msg.content.startsWith('!ping')) {
+    client.events.messageCreate.subscribe(async (msg) => {
+      if (msg.content?.startsWith('!ping')) {
         await ping(client, msg);
-      } else if (msg.content.startsWith('!eval')) await evalCommand(client, msg);
+      } else if (msg.content?.startsWith('!eval')) await evalCommand(client, msg);
     });
-
-    client.on('error', (e) => console.log(e));
 
     client.init();
   });

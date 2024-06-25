@@ -41,18 +41,18 @@ export class GatewayManager extends Collection<Shard> {
     if (!shard) {
       shard = super.set(id, new Shard(this.#token, this.#client, id));
 
-      shard.on('shardReady', () => {
+      shard.events.shardReady.subscribe(() => {
         const connectedShards = Array.from(this.values()).filter((s) => s.ready == true);
 
         if (connectedShards.length >= (this.#client.options.sharding.totalShards || 1)) {
           this.#client.ready = true;
-          this.#client.emit('ready');
+          this.#client.events.ready.notify(this.#client);
         } else if (this.#client.options.sharding.connectOneShardAtTime) {
           this.spawn(id + 1);
         }
       });
 
-      shard.on('pingUpdate', () => {
+      shard.events.pingUpdate.subscribe(() => {
         let ping = 0;
 
         for (const shard of Array.from(this.values())) {

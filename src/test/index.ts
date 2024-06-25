@@ -17,18 +17,16 @@ import evalCommand from './commands/eval';
   });
   client.init();
 
-  client.on('ready', () => {
+  client.events.ready.subscribe(() => {
     console.log(`${client.user?.username} is ready.`);
   });
 
-  client.on('shardReady', (shard: Shard) => {
+  client.events.shardReady.subscribe((shard) => {
     console.log(`Shard ready: ${shard.id}`);
   });
 
-  client.on('messageCreate', async (msg: Message) => {
-    if (msg.content.startsWith('!ping')) {
-      console.log(msg.author);
-      await ping(client, msg);
-    } else if (msg.content.startsWith('!eval')) evalCommand(client, msg);
+  client.events.messageCreate.subscribe(async (msg) => {
+    if (msg.content?.startsWith('!ping')) await ping(client, msg);
+    else if (msg.content?.startsWith('!eval')) evalCommand(client, msg);
   });
 })();

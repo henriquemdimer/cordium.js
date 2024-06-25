@@ -6,8 +6,9 @@ import { ShardPayload } from '../classes/ShardPayload';
 import { Guild } from '../classes/Guild';
 import { Message } from '../classes/Message';
 import { TextChannel } from '../classes/TextChannel';
+import { Observable } from '../classes/Observable';
 
-export class Shard extends EventEmitter {
+export class Shard {
   #token: string;
   #client: Client;
   public ws?: WebSocket;
@@ -17,9 +18,13 @@ export class Shard extends EventEmitter {
   public ping: number;
   public lastHearbeatSent: number;
   public lastHearbeatAck: number;
+  public events = {
+    connect: new Observable(),
+    shardReady: new Observable<Shard>(),
+    pingUpdate: new Observable()
+  };
 
   public constructor(token: string, client: Client, id: number) {
-    super();
     if (!client || !(client instanceof Client)) throw new Error('Shard(client): client is missing or invalid.');
     if (!token || typeof token !== 'string') throw new Error('Shard(token): token is missing or is not a string.');
 
@@ -34,6 +39,7 @@ export class Shard extends EventEmitter {
     this.lastHearbeatAck = 0;
 
     this.onMessage = this.onMessage.bind(this);
+    this.onOpen = this.onOpen.bind(this);
   }
 
   public connect() {
@@ -44,7 +50,7 @@ export class Shard extends EventEmitter {
   }
 
   private onOpen() {
-    super.emit('connected');
+    this.events.connect.notify();
   }
 
   private onMessage(msg: MessageEvent) {
@@ -64,7 +70,7 @@ export class Shard extends EventEmitter {
       case 11:
         this.lastHearbeatAck = Date.now();
         this.ping = this.lastHearbeatAck - this.lastHearbeatSent;
-        this.emit('pingUpdate');
+        this.events.pingUpdate.notify();
         break;
 
       case 9:
@@ -88,8 +94,8 @@ export class Shard extends EventEmitter {
     switch (payload.t) {
     case 'READY':
       this.ready = true;
-      this.#client.emit('shardReady', this);
-      this.emit('shardReady');
+      this.#client.events.shardReady.notify(this);
+      this.events.shardReady.notify(this);
       break;
 
     case 'GUILD_CREATE': {
@@ -107,7 +113,7 @@ export class Shard extends EventEmitter {
         if(channel) channel.cache.messages.set(message.id, message);
       }
 
-      this.#client.emit('messageCreate', message);
+      this.#client.events.messageCreate.notify(message);
       break;
     }
   }

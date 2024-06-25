@@ -1,8 +1,10 @@
+ 
 import EventEmitter from 'events';
 import { RequestManager, RequestManagerOptions } from './rest/RequestManager';
 import { GatewayManager, ShardingOptions } from './gateway/GatewayManager';
 import { User } from './classes/User';
 import { ClientCache } from './cache/ClientCache';
+import { ClientEvents } from './ClientEvents';
 
 export interface ClientOptions {
   intents: number | number[];
@@ -18,6 +20,7 @@ export class Client extends EventEmitter {
   public options: ClientOptions;
   public cache: ClientCache;
   public user?: User;
+  public events: ClientEvents;
 
   public constructor(token: string, options?: Partial<ClientOptions>) {
     super();
@@ -44,6 +47,7 @@ export class Client extends EventEmitter {
     this.shards = new GatewayManager(this, this.#token);
     this.cache = new ClientCache(this);
     this.ready = false;
+    this.events = new ClientEvents();
   }
 
   public async getMe() {

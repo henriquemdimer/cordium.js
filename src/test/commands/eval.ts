@@ -1,30 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { Client } from '../../core/Client';
 import { Message } from '../../core/classes/Message';
 import util from 'util';
 import { ClusterClient } from '../../core/cluster/ClusterClient';
+import vm from 'vm';
 
 export default async (client: Client | ClusterClient, msg: Message) => {
+  if (!msg.content || msg.author.id !== '465599065007194113') return await msg.sendReference('Vai tu te fude');
+  const content = msg.content?.split(' ').slice(1).join(' ');
+
   try {
-    let content: any = msg.content.split(' ');
-    content.shift();
-    content = content.join(' ');
+    const context = { client, msg };
 
-    if (!msg.content || msg.author.id !== '465599065007194113') return await msg.channel?.send('Vai tu te fude');
-    let evalued = eval(`(async () => {${content}})()`);
+    vm.createContext(context);
+    let evalued = await vm.runInContext(`(async () => { return ${content} })()`, context);
+    evalued = util.inspect(evalued, true, 1);
 
-    if (evalued && evalued.constructor.name == 'Promise')
-      evalued = await evalued;
-
-    if (typeof evalued !== 'string')
-      evalued = util.inspect(evalued, { depth: 1 });
-
-    evalued = evalued
-      .replace(/`/g, '`' + String.fromCharCode(8203))
-      .replace(/@/g, '@' + String.fromCharCode(8203));
-
-    await msg.channel?.send(`\`\`\`js\n${evalued}\`\`\``);
+    return await msg.sendReference(`\`\`\`js\n${evalued}\`\`\``);
   } catch (err) {
-    await msg.channel?.send(`\`\`\`js\n${err}\`\`\``);
+    await msg.sendReference(`\`\`\`js\n${err}\`\`\``);
   }
 };

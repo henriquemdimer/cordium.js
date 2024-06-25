@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from '../Client';
 import { Guild } from './Guild';
-import { TextChannel } from './TextChannel';
+import { IMessageSendOptions, TextChannel } from './TextChannel';
 import { User } from './User';
 
 export class Message {
@@ -24,11 +24,19 @@ export class Message {
     this.channelId = data.channel_id;
   }
 
-  get guild(): Guild | null {
+  public get guild(): Guild | null {
     return this.#client.cache.guilds.get(this.guildId); 
   }
 
-  get channel(): TextChannel | null {
+  public get channel(): TextChannel | null {
     return this.guild?.cache.channels.get(this.channelId) || null;
+  }
+
+  public async sendReference(content: string, options?: IMessageSendOptions) {
+    return await this.channel?.sendMessage(content, { ...options, messageReference: { messageId: this.id, guildId: this.guildId } });
+  }
+
+  public async delete() {
+    return await this.channel?.deleteMessage(this.id);
   }
 }

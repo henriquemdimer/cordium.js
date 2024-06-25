@@ -51,25 +51,32 @@ export class RequestManager {
           let body = '';
 
           res.on('data', (chunk) => {
-            body += chunk;
+            if(chunk && chunk.length) body += chunk;
           });
-
+          
+          // Criar uma classe de resposta da API.
           res.on('end', () => {
-            if (res.statusCode === 200) {
-              resolve(JSON.parse(body));
-            } else {
-              reject(JSON.parse(body));
+            try {
+              const parsed = JSON.parse(body);
+              if (res.statusCode === 200) {
+                resolve(parsed);
+              } else {
+                reject(parsed);
+              }
+            } catch(err) {
+              reject(err);
             }
           });
         });
 
+        req.on('error', reject);
         if (options.body) {
           req.write(JSON.stringify(options.body));
         }
 
         req.end();
       } catch (err) {
-        console.log(err);
+        reject(err);
       }
     });
   }

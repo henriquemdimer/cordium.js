@@ -1,1 +1,2 @@
-Readme in development 🤜🤛❤️
+## About
+Cordium.js is a package written in [Typescript](https://www.typescriptlang.org/) that aims to assist in the development of bots for Discord, the package has several classes, managers and interfaces to facilitate the interaction with the [Discord API](https://discord.com/developers/docs/intro), in addition to being fully customizable, cordium.js is still in the alpha phase of development and is not ready to be used in production.

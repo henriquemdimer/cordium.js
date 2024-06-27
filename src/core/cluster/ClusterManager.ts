@@ -3,7 +3,6 @@ import { ClientOptions } from '../Client';
 import Cluster, { Worker } from 'cluster';
 import { IPCMessage, IResult } from '../classes/IPCMessage';
 import { ClusterClient } from './ClusterClient';
-import { Observable } from '../classes/Observable';
 import { ClusterEvents } from '../events/ClusterEvents';
 
 export interface ClusterManagerOptions extends ClientOptions {
@@ -49,7 +48,12 @@ export class ClusterManager {
         this.workers.push(worker);
 
         worker.send({ index: i, token: this.#token, shards: chunk, total: this.options.sharding?.totalShards || 2, event: 'master-initial' });
-
+        
+        worker.on('exit', () => {
+          const index = this.workers.findIndex((w) => w.process.pid == worker.process.pid);
+          this.workers.splice(index, 1);
+          this.events.workerExit.notify(worker);
+        });
         worker.on('message', (message) => {
           const msg = new IPCMessage(message);
           if (!msg) return;
@@ -82,6 +86,25 @@ export class ClusterManager {
             }
 
             break;
+          }
+
+          case 'data-request': {
+            const target = this.workers.find((w) => w.process.pid == msg.to);
+            if(target) {
+              target.send(new IPCMessage({ from: msg.from, to: target.process.pid, event: msg.event, cid: msg.cid, data: msg.data }));
+              let result: IResult;
+
+              const callback = (message: any) => {
+                const response = new IPCMessage(message);
+                if(!response || response.cid != msg.cid || !response.result) return;
+
+                result = response.result;
+                target.removeListener('message', callback);
+                sender.send(new IPCMessage({ from: msg.to || '', to: msg.from, event: 'data-response', cid: msg.cid, data: result }));
+              };
+
+              target.on('message', callback);
+            }
           }
           }
         });

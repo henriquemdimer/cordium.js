@@ -23,7 +23,7 @@ export class IPC extends EventEmitter {
       case 'data-request': {
         if (!msg.data) return;
 
-        const context = { client: this.#client };
+        const context = { client: this.#client, process };
         VM.createContext(context);
 
         const result = VM.runInContext(msg.data, context);
@@ -57,5 +57,9 @@ export class IPC extends EventEmitter {
 
       process.on('message', callback);
     });
+  }
+
+  public generateCID() {
+    return IPCMessage.generateCID();
   }
 }

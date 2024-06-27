@@ -17,7 +17,8 @@ import { Intents } from '../';
     intents: [Intents.ALL]
   });
 
-  (await manager.init()).events.workerSpawned.subscribe((client: ClusterClient) => {
+  await manager.init();
+  manager.events.workerSpawned.subscribe((client: ClusterClient) => {
     client.events.ready.subscribe(() => {
       console.log(client.user?.username, 'is ready', 'PID =', process.pid);
     });
@@ -29,5 +30,9 @@ import { Intents } from '../';
     });
 
     client.init();
+  });
+
+  manager.events.workerExit.subscribe((worker) => {
+    console.log('Worker died:', worker.process.pid);
   });
 })();

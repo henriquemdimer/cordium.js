@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventEmitter from 'events';
 import { Client } from '../Client';
 import { MessageEvent, WebSocket } from 'ws';
 import { ShardPayload } from '../classes/ShardPayload';
@@ -83,7 +82,7 @@ export class Shard {
         break;
       }
     } catch (err) {
-      this.#client.emit('error', err);
+      this.#client.events.error.notify(err);
     }
   }
 

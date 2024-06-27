@@ -7,4 +7,5 @@ export class ClientEvents {
   public ready: Observable<Client> = new Observable<Client>();
   public shardReady: Observable<Shard> = new Observable<Shard>();
   public messageCreate: Observable<Message> = new Observable<Message>();
+  public error: Observable<unknown> = new Observable<unknown>();
 }

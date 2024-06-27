@@ -3,7 +3,7 @@ import { RequestManager, RequestManagerOptions } from './rest/RequestManager';
 import { GatewayManager, ShardingOptions } from './gateway/GatewayManager';
 import { User } from './classes/User';
 import { ClientCache } from './cache/ClientCache';
-import { ClientEvents } from './ClientEvents';
+import { ClientEvents } from './events/ClientEvents';
 
 export interface ClientOptions {
   intents: number | number[];

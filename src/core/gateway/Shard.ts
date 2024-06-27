@@ -6,6 +6,7 @@ import { Guild } from '../classes/Guild';
 import { Message } from '../classes/Message';
 import { TextChannel } from '../classes/TextChannel';
 import { Observable } from '../classes/Observable';
+import { ShardEvents } from '../events/ShardEvents';
 
 export class Shard {
   #token: string;
@@ -17,11 +18,7 @@ export class Shard {
   public ping: number;
   public lastHearbeatSent: number;
   public lastHearbeatAck: number;
-  public events = {
-    connect: new Observable(),
-    shardReady: new Observable<Shard>(),
-    pingUpdate: new Observable()
-  };
+  public events: ShardEvents;
 
   public constructor(token: string, client: Client, id: number) {
     if (!client || !(client instanceof Client)) throw new Error('Shard(client): client is missing or invalid.');
@@ -29,6 +26,7 @@ export class Shard {
 
     this.#token = token;
     this.#client = client;
+    this.events = new ShardEvents();
 
     this.id = id;
     this.s = 0;

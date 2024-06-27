@@ -4,6 +4,7 @@ import Cluster, { Worker } from 'cluster';
 import { IPCMessage, IResult } from '../classes/IPCMessage';
 import { ClusterClient } from './ClusterClient';
 import { Observable } from '../classes/Observable';
+import { ClusterEvents } from '../events/ClusterEvents';
 
 export interface ClusterManagerOptions extends ClientOptions {
   clustering: {
@@ -15,14 +16,13 @@ export class ClusterManager {
   #token: string;
   public options: Partial<ClusterManagerOptions>;
   public workers: Worker[];
-  public events = {
-    workerSpawned: new Observable<ClusterClient>(),
-  };
+  public events: ClusterEvents;
 
   public constructor(token: string, options: Partial<ClusterManagerOptions>) {
     this.#token = token;
     this.options = options;
     this.workers = [];
+    this.events = new ClusterEvents();
   }
 
   public async init(): Promise<this> {

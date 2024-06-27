@@ -1,5 +1,4 @@
  
-import EventEmitter from 'events';
 import { RequestManager, RequestManagerOptions } from './rest/RequestManager';
 import { GatewayManager, ShardingOptions } from './gateway/GatewayManager';
 import { User } from './classes/User';
@@ -12,7 +11,7 @@ export interface ClientOptions {
   sharding: ShardingOptions;
 }
 
-export class Client extends EventEmitter {
+export class Client {
   #token: string;
   public rest: RequestManager;
   public shards: GatewayManager;
@@ -23,8 +22,6 @@ export class Client extends EventEmitter {
   public events: ClientEvents;
 
   public constructor(token: string, options?: Partial<ClientOptions>) {
-    super();
-
     if (!token || typeof token != 'string') throw new Error('Client(token): token is missing or is not a string.');
 
     this.options = {

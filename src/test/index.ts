@@ -1,7 +1,5 @@
 import { Client, Intents } from '../';
-import { Message } from '../core/classes/Message';
 import 'dotenv/config';
-import { Shard } from '../core/gateway/Shard';
 import ping from './commands/ping';
 import evalCommand from './commands/eval';
 

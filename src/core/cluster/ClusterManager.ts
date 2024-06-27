@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventEmitter from 'events';
 import { ClientOptions } from '../Client';
 import Cluster, { Worker } from 'cluster';
 import { IPCMessage, IResult } from '../classes/IPCMessage';

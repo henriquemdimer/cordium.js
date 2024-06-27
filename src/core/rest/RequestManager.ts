@@ -57,7 +57,7 @@ export class RequestManager {
           // Criar uma classe de resposta da API.
           res.on('end', () => {
             try {
-              const parsed = JSON.parse(body);
+              const parsed = body.length ? JSON.parse(body) : {};
               if (res.statusCode === 200) {
                 resolve(parsed);
               } else {

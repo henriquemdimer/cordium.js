@@ -4,6 +4,7 @@ import Cluster, { Worker } from 'cluster';
 import { IPCMessage, IResult } from '../classes/IPCMessage';
 import { ClusterClient } from './ClusterClient';
 import { ClusterEvents } from '../events/ClusterEvents';
+import { Collection } from '../classes/Collection';
 
 export interface ClusterManagerOptions extends ClientOptions {
   clustering: {
@@ -11,16 +12,15 @@ export interface ClusterManagerOptions extends ClientOptions {
   }
 }
 
-export class ClusterManager {
+export class ClusterManager extends Collection<Worker> {
   #token: string;
   public options: Partial<ClusterManagerOptions>;
-  public workers: Worker[];
   public events: ClusterEvents;
 
   public constructor(token: string, options: Partial<ClusterManagerOptions>) {
+    super();
     this.#token = token;
     this.options = options;
-    this.workers = [];
     this.events = new ClusterEvents();
   }
 
@@ -45,20 +45,23 @@ export class ClusterManager {
 
         const worker = Cluster.fork();
         worker.setMaxListeners(9999);
-        this.workers.push(worker);
+        super.set(worker.process.pid, worker);
 
         worker.send({ index: i, token: this.#token, shards: chunk, total: this.options.sharding?.totalShards || 2, event: 'master-initial' });
         
         worker.on('exit', () => {
-          const index = this.workers.findIndex((w) => w.process.pid == worker.process.pid);
-          this.workers.splice(index, 1);
+          console.log('exit');
           this.events.workerExit.notify(worker);
+
+          super.delete(worker.process.pid);
+          console.log('ei');
         });
+
         worker.on('message', (message) => {
           const msg = new IPCMessage(message);
           if (!msg) return;
 
-          const sender = this.workers.find((w) => w.process.pid == msg.from);
+          const sender = super.get(worker.process.pid);
           if (!sender || !sender.process.pid) return;
 
           switch (msg.event) {
@@ -67,7 +70,7 @@ export class ClusterManager {
             const result: IResult[] = [];
             const cid = IPCMessage.generateCID();
 
-            for (const worker of this.workers) {
+            for (const worker of super.toArray()) {
               worker.send(new IPCMessage({ from: 'master', to: worker.process.pid, event: 'data-request', cid, data: msg.data }));
               reqsSent++;
 
@@ -89,7 +92,7 @@ export class ClusterManager {
           }
 
           case 'data-request': {
-            const target = this.workers.find((w) => w.process.pid == msg.to);
+            const target = super.get(msg.to);
             if(target) {
               target.send(new IPCMessage({ from: msg.from, to: target.process.pid, event: msg.event, cid: msg.cid, data: msg.data }));
               let result: IResult;

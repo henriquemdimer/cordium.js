@@ -5,7 +5,6 @@ import { ShardPayload } from '../classes/ShardPayload';
 import { Guild } from '../classes/Guild';
 import { Message } from '../classes/Message';
 import { TextChannel } from '../classes/TextChannel';
-import { Observable } from '../classes/Observable';
 import { ShardEvents } from '../events/ShardEvents';
 
 export class Shard {

@@ -1,0 +1,52 @@
+[**cordium.js**](../README.mdx) • **Docs**
+
+***
+
+[cordium.js](../globals.mdx) / IPCMessage
+
+# Class: IPCMessage
+
+## Constructors
+
+### new IPCMessage()
+
+> **new IPCMessage**(`options`): [`IPCMessage`](IPCMessage.mdx)
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `options` | [`IIPCMessage`](../interfaces/IIPCMessage.mdx) |
+
+#### Returns
+
+[`IPCMessage`](IPCMessage.mdx)
+
+#### Defined in
+
+[src/core/classes/IPCMessage.ts:25](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L25)
+
+## Properties
+
+| Property | Modifier | Type | Defined in |
+| ------ | ------ | ------ | ------ |
+| `cid` | `public` | `string` | [src/core/classes/IPCMessage.ts:21](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L21) |
+| `data?` | `public` | `any` | [src/core/classes/IPCMessage.ts:22](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L22) |
+| `event?` | `public` | `null` \| `string` | [src/core/classes/IPCMessage.ts:20](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L20) |
+| `from` | `public` | `string` \| `number` | [src/core/classes/IPCMessage.ts:18](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L18) |
+| `result?` | `public` | `null` \| [`IResult`](../interfaces/IResult.mdx) | [src/core/classes/IPCMessage.ts:23](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L23) |
+| `to?` | `public` | `null` \| `string` \| `number` | [src/core/classes/IPCMessage.ts:19](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L19) |
+
+## Methods
+
+### generateCID()
+
+> `static` **generateCID**(): \`$\{string\}-$\{string\}-$\{string\}-$\{string\}-$\{string\}\`
+
+#### Returns
+
+\`$\{string\}-$\{string\}-$\{string\}-$\{string\}-$\{string\}\`
+
+#### Defined in
+
+[src/core/classes/IPCMessage.ts:38](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/classes/IPCMessage.ts#L38)

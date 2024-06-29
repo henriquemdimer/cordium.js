@@ -1,0 +1,77 @@
+[**cordium.js**](../README.mdx) • **Docs**
+
+***
+
+[cordium.js](../globals.mdx) / Shard
+
+# Class: Shard
+
+## Constructors
+
+### new Shard()
+
+> **new Shard**(`token`, `client`, `id`): [`Shard`](Shard.mdx)
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `token` | `string` |
+| `client` | [`Client`](Client.mdx) |
+| `id` | `number` |
+
+#### Returns
+
+[`Shard`](Shard.mdx)
+
+#### Defined in
+
+[src/core/gateway/Shard.ts:22](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L22)
+
+## Properties
+
+| Property | Modifier | Type | Defined in |
+| ------ | ------ | ------ | ------ |
+| `events` | `public` | `ShardEvents` | [src/core/gateway/Shard.ts:20](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L20) |
+| `id` | `public` | `number` | [src/core/gateway/Shard.ts:14](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L14) |
+| `lastHearbeatAck` | `public` | `number` | [src/core/gateway/Shard.ts:19](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L19) |
+| `lastHearbeatSent` | `public` | `number` | [src/core/gateway/Shard.ts:18](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L18) |
+| `ping` | `public` | `number` | [src/core/gateway/Shard.ts:17](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L17) |
+| `ready` | `public` | `boolean` | [src/core/gateway/Shard.ts:16](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L16) |
+| `s` | `public` | `number` | [src/core/gateway/Shard.ts:15](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L15) |
+| `ws?` | `public` | `WebSocket` | [src/core/gateway/Shard.ts:13](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L13) |
+
+## Methods
+
+### connect()
+
+> **connect**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/core/gateway/Shard.ts:41](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L41)
+
+***
+
+### sendPayload()
+
+> **sendPayload**(`op`, `data`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `op` | `number` |
+| `data` | `any` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/core/gateway/Shard.ts:117](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/gateway/Shard.ts#L117)

@@ -1,8 +1,8 @@
 {
   "name": "cordium.js",
   "version": "0.0.1",
-  "description": "A multi-threaded package for interacting with the Discord API.",
-  "main": "index.js",
+  "description": "A multi-threaded vertically scalable library for interacting with the Discord API.",
+  "main": "build/index.js",
   "devDependencies": {
     "@eslint/js": "^9.5.0",
     "@types/node": "^20.14.2",
@@ -45,9 +45,9 @@
     "api"
   ],
   "author": "vonderheimsk",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/devdimer/cordium.js/issues"
   },
-  "homepage": "https://github.com/devdimer/cordium.js#readme"
+  "homepage": "https://cordiumjs.vercel.app"
 }

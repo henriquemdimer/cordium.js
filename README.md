@@ -38,7 +38,7 @@ npm run build
 If you are going to copy these examples, remember to change the Discord authentication token, you can create a Bot and get its token here: [Discord Developers Portal](https://discord.com/developers/applications)
 
 #### Simple command
-```ts
+```ts copy showLineNumbers
 import { Client, Intents } from '../build/index.js';
 
 (async () => {
@@ -67,7 +67,7 @@ import { Client, Intents } from '../build/index.js';
 ```
 
 #### Sharding
-```ts
+```ts copy showLineNumbers
 import { Client, Intents } from '../build/index.js';
 
 (async () => {
@@ -107,7 +107,7 @@ import { Client, Intents } from '../build/index.js';
 ```
 
 ### Clusterized sharding
-```ts
+```ts copy showLineNumbers
 import { ClusterManager, Intents } from '../build/index.js';
 
 (async () => {

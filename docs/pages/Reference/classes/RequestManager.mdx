@@ -6,6 +6,8 @@
 
 # Class: RequestManager
 
+Represents a RequestManager.
+
 ## Constructors
 
 ### new RequestManager()
@@ -25,13 +27,33 @@
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:24](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L24)
+[src/core/rest/RequestManager.ts:64](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L64)
+
+## Properties
+
+| Property | Modifier | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ | ------ |
+| `#client` | `protected` | [`Client`](Client.mdx) | The client instance. | [src/core/rest/RequestManager.ts:62](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L62) |
+| `#token` | `protected` | `string` | The Discord authorization token. | [src/core/rest/RequestManager.ts:55](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L55) |
 
 ## Methods
 
 ### request()
 
 > **request**(`options`): `Promise`\<`unknown`\>
+
+The method used to send a request to Discord API.
+
+```ts copy showLineNumbers
+const user = await client.rest.request({
+ method: 'GET',
+ endpoint: '/users/@me',
+ auth: true
+});
+
+// Raw user object from API
+console.log(user);
+```
 
 #### Parameters
 
@@ -45,4 +67,4 @@
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:32](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L32)
+[src/core/rest/RequestManager.ts:86](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L86)

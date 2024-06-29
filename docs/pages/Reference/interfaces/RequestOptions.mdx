@@ -12,9 +12,11 @@
 
 > `optional` **auth**: `boolean`
 
+Whether to send the authorization token or not (NOTE if the AlwaysSendAuthorizationToken option is true, the token will be sent anyway)
+
 #### Defined in
 
-[src/core/rest/RequestManager.ts:11](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L11)
+[src/core/rest/RequestManager.ts:26](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L26)
 
 ***
 
@@ -22,9 +24,11 @@
 
 > `optional` **body**: `any`
 
+The HTTP request body.
+
 #### Defined in
 
-[src/core/rest/RequestManager.ts:10](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L10)
+[src/core/rest/RequestManager.ts:21](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L21)
 
 ***
 
@@ -32,9 +36,11 @@
 
 > **endpoint**: `string`
 
+The Discord api endpoint, the base url always will be (https://discord.com/v{version}), so you only need to specify the endpoint, EXAMPLE: /users or /channels.
+
 #### Defined in
 
-[src/core/rest/RequestManager.ts:9](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L9)
+[src/core/rest/RequestManager.ts:16](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L16)
 
 ***
 
@@ -42,13 +48,15 @@
 
 > `optional` **headers**: `object`
 
+The HTTP request headers.
+
 #### Index Signature
 
  \[`key`: `string`\]: `string`
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:12](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L12)
+[src/core/rest/RequestManager.ts:31](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L31)
 
 ***
 
@@ -56,6 +64,8 @@
 
 > **method**: [`HTTP_METHODS`](../type-aliases/HTTP_METHODS.mdx)
 
+The HTTP method that will be used to make the request.
+
 #### Defined in
 
-[src/core/rest/RequestManager.ts:8](https://github.com/devdimer/cordium.js/blob/e371e1ca62e6613420e96362d2170ac2af18a382/src/core/rest/RequestManager.ts#L8)
+[src/core/rest/RequestManager.ts:11](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L11)

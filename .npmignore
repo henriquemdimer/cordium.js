@@ -1,0 +1,8 @@
+docs
+scripts
+tsconfig.json
+tsup.config.ts
+typedoc.config.cjs
+eslint.config.mjs
+.gitignore
+.git

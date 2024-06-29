@@ -5,20 +5,60 @@ import { Client } from '../Client';
 export type HTTP_METHODS = 'get' | 'GET' | 'post' | 'POST' | 'delete' | 'DELETE' | 'patch' | 'PATCH';
 
 export interface RequestOptions {
+  /**
+   * The HTTP method that will be used to make the request.
+   */
   method: HTTP_METHODS;
+
+  /**
+   * The Discord api endpoint, the base url always will be (https://discord.com/v{version}), so you only need to specify the endpoint, EXAMPLE: /users or /channels.
+   */
   endpoint: string;
+
+  /**
+   * The HTTP request body.
+   */
   body?: any;
+
+  /**
+   * Whether to send the authorization token or not (NOTE if the AlwaysSendAuthorizationToken option is true, the token will be sent anyway)
+   */
   auth?: boolean;
+
+  /**
+   * The HTTP request headers.
+   */
   headers?: { [key: string]: string };
 }
 
 export interface RequestManagerOptions {
+  /**
+   * The API version of Discord.
+   */
   apiVersion?: string | number;
+
+  /**
+   * If the request method will always send authorization token.
+   */
   alwaysSendAuthorizationHeader?: boolean;
 }
 
+/**
+ * Represents a RequestManager.
+ */
 export class RequestManager {
+  /**
+   * The Discord authorization token.
+   *
+   * @protected
+   */
   #token: string;
+
+  /**
+   * The client instance.
+   *
+   * @protected
+   */
   #client: Client;
 
   public constructor(client: Client, token: string) {
@@ -29,6 +69,20 @@ export class RequestManager {
     this.#client = client;
   }
 
+  /**
+   * The method used to send a request to Discord API.
+   *
+   * ```ts copy showLineNumbers
+   * const user = await client.rest.request({
+   *  method: 'GET',
+   *  endpoint: '/users/@me',
+   *  auth: true
+   * });
+   * 
+   * // Raw user object from API
+   * console.log(user);
+   * ```
+   */
   public request(options: RequestOptions) {
     return new Promise((resolve, reject) => {
       if (!options || typeof options != 'object') throw new Error('RequestManager.request(options): options is missing or invalid.');

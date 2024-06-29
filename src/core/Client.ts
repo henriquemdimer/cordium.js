@@ -6,8 +6,19 @@ import { ClientCache } from './cache/ClientCache';
 import { ClientEvents } from './events/ClientEvents';
 
 export interface ClientOptions {
+  /**
+   * The intents tha will be sent to Discord gateway
+   */
   intents: number | number[];
+
+  /**
+   * Request manager options
+   */
   rest: RequestManagerOptions;
+
+  /**
+   * Gateway manager options
+   */
   sharding: ShardingOptions;
 }
 

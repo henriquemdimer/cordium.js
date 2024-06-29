@@ -17,10 +17,14 @@ Clone this repository
 ```sh
 git clone https://github.com/devdimer/cordium.js.git
 ```
+Install dependencies (use --force since eslint v9 broke some plugins)
+```sh
+cd cordium.js && npm install --force
+```
 
 Compile the source code
-```
-cd cordium.js && npm run build
+```sh
+npm run build
 ```
 
 ## Features

@@ -31,8 +31,4 @@ import { Intents } from '../';
 
     client.init();
   });
-
-  manager.events.workerExit.subscribe((worker) => {
-    console.log('Worker died:', worker.process.pid);
-  });
 })();

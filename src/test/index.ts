@@ -13,7 +13,7 @@ import evalCommand from './commands/eval';
       connectOneShardAtTime: false,
     }
   });
-  client.init();
+  await client.init();
 
   client.events.ready.subscribe(() => {
     console.log(`${client.user?.username} is ready.`);

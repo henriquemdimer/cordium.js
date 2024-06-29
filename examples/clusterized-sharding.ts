@@ -1,3 +1,4 @@
+
 import { ClusterManager, Intents } from '../build/index.js';
 
 (async () => {

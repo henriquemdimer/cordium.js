@@ -13,20 +13,8 @@ Cordium.js is a library written in [Typescript](https://www.typescriptlang.org/)
 - [Roadmap](#roadmap)
 
 ## Installation
-This library has not yet been published on NPM, so you will have to clone this repository to use it, make sure you have a recent version of Git, NodeJS and NPM
-
-Clone this repository
 ```sh
-git clone https://github.com/devdimer/cordium.js.git
-```
-Install dependencies (use --force since eslint v9 broke some plugins)
-```sh
-cd cordium.js && npm install --force
-```
-
-Compile the source code
-```sh
-npm run build
+npm install cordium.js
 ```
 
 ## Features
@@ -41,7 +29,7 @@ If you are going to copy these examples, remember to change the Discord authenti
 
 #### Simple command
 ```ts copy showLineNumbers
-import { Client, Intents } from '../build/index.js';
+import { Client, Intents } from 'cordium.js';
 
 (async () => {
   const client = new Client('MTE1NzcyMDExNDMwMTUxNzkyNA.GyqSdV.H5bxTCTKBG6kJP-B0HUaSTVIVE7FhJsk-MR8VM', {
@@ -70,7 +58,7 @@ import { Client, Intents } from '../build/index.js';
 
 #### Sharding
 ```ts copy showLineNumbers
-import { Client, Intents } from '../build/index.js';
+import { Client, Intents } from 'cordium.js';
 
 (async () => {
   const client = new Client('MTE1NzcyMDExNDMwMTUxNzkyNA.GyqSdV.H5bxTCTKBG6kJP-B0HUaSTVIVE7FhJsk-MR8VM', {
@@ -110,7 +98,7 @@ import { Client, Intents } from '../build/index.js';
 
 ### Clusterized sharding
 ```ts copy showLineNumbers
-import { ClusterManager, Intents } from '../build/index.js';
+import { ClusterManager, Intents } from 'cordium.js';
 
 (async () => {
   // Instead of instantiating a normal Client, we will instantiate the ClusterManager

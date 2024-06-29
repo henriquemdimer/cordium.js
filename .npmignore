@@ -8,3 +8,5 @@ eslint.config.mjs
 .gitignore
 .git
 .release-it.json
+.env
+src

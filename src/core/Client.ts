@@ -11,16 +11,57 @@ export interface ClientOptions {
   sharding: ShardingOptions;
 }
 
+/**
+ * Represents a socket based Client.
+ */
 export class Client {
+  /**
+   * @protected
+   *
+   * The Discord authorization token.
+   */
   #token: string;
+
+  /**
+   * Utility class to handle all HTTPs requests to Discord Api.
+   */
   public rest: RequestManager;
+
+  /**
+   * Gateway manager, handle all shards connection.
+   */
   public shards: GatewayManager;
+
+  /**
+   * Whether has completed the initialization setup and is fully connected to Discord gateway.
+   */
   public ready: boolean;
+
+  /**
+   * Client options to customize every thing, such as api version, URLs, sharding, etc...
+   */
   public options: ClientOptions;
+
+  /**
+   * Client cache utility will store Guild objects when received from Discord gateway and API,
+   */
   public cache: ClientCache;
+
+  /**
+   * The client user.
+   */
   public user?: User;
+
+  /**
+   * All events received from Discord gateway and other util events.
+   */
   public events: ClientEvents;
 
+  /**
+   * ```ts copy showLineNumbers
+   * new Client("token", { sharding: { totalShards: 2 } });
+   * ```
+   */
   public constructor(token: string, options?: Partial<ClientOptions>) {
     if (!token || typeof token != 'string') throw new Error('Client(token): token is missing or is not a string.');
 
@@ -47,7 +88,20 @@ export class Client {
     this.events = new ClientEvents();
   }
 
-  public async getMe() {
+  /**
+   * Get and set the client user object.
+   *
+   * ```ts copy showLineNumbers
+   * await client.getMe();
+   * console.log(client.user);
+   * ```
+   *
+   * ```ts copy showLineNumbers
+   * const user = await client.getMe();
+   * console.log(user);
+   * ```
+   */
+  public async getMe(): Promise<User> {
     const me = await this.rest.request({
       method: 'get',
       endpoint: '/users/@me',
@@ -58,6 +112,13 @@ export class Client {
     return this.user;
   }
 
+  /**
+   * Start the initialization process, first it will try to catch the user itself, then it will connect all the shards.
+   *
+   * ```ts copy showLineNumbers
+   * await client.init();
+   * ```
+   */
   public async init() {
     try {
       await this.getMe();

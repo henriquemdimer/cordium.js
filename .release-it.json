@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+  "github": {
+    "release": true,
+    "releaseName": "Release ${version}",
+    "tokenRef": "GTOKEN",
+    "push": true,
+    "comments": {
+      "submit": false,
+      "issue": ":rocket: _This issue has been resolved in v${version}. See [${releaseName}](${releaseUrl}) for release notes._",
+      "pr": ":rocket: _This pull request is included in v${version}. See [${releaseName}](${releaseUrl}) for release notes._"
+    }
+  },
+  "npm": {
+    "publish": true,
+    "allowSameVersion": true,
+    "publishPath": "."
+  }
+}

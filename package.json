@@ -10,6 +10,7 @@
     "dotenv": "^16.4.5",
     "eslint": "^9.0.0",
     "globals": "^15.6.0",
+    "release-it": "^17.4.0",
     "sucrase": "^3.35.0",
     "tsup": "^8.1.0",
     "typedoc": "^0.26.3",
@@ -27,7 +28,8 @@
     "lint:fix": "eslint ./src --fix",
     "docs:generate": "rm -rf ./docs/pages/ && typedoc && chmod +x ./scripts/organizeDocs.sh && ./scripts/organizeDocs.sh",
     "docs:build": "cd docs && npm run build",
-    "docs:serve": "cd docs && npm start"
+    "docs:serve": "cd docs && npm start",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",

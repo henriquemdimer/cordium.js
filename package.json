@@ -1,6 +1,6 @@
 {
   "name": "cordium.js",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "A multi-threaded vertically scalable library for interacting with the Discord API.",
   "main": "build/index.js",
   "devDependencies": {

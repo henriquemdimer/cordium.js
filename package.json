@@ -12,6 +12,8 @@
     "globals": "^15.6.0",
     "sucrase": "^3.35.0",
     "tsup": "^8.1.0",
+    "typedoc": "^0.26.3",
+    "typedoc-plugin-markdown": "^4.1.0",
     "typescript": "^5.5.2",
     "typescript-eslint": "^7.13.1"
   },
@@ -22,7 +24,10 @@
     "dev": "node -r sucrase/register",
     "build": "tsup",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "docs:generate": "rm -rf ./docs/pages/ && typedoc && chmod +x ./scripts/organizeDocs.sh && ./scripts/organizeDocs.sh",
+    "docs:build": "cd docs && npm run build",
+    "docs:serve": "cd docs && npm start"
   },
   "repository": {
     "type": "git",

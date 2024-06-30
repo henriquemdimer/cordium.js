@@ -29,7 +29,7 @@
     "docs:generate": "rm -rf ./docs/pages/ && typedoc && chmod +x ./scripts/organizeDocs.sh && ./scripts/organizeDocs.sh",
     "docs:build": "cd docs && npm run build",
     "docs:serve": "cd docs && npm start",
-    "release": "release-it"
+    "release": "npm run docs:generate && release-it"
   },
   "repository": {
     "type": "git",

@@ -5,12 +5,14 @@ export * from './core/Constants';
 // Cache
 export * from './core/cache/ClientCache';
 export * from './core/cache/GuildCache';
+export * from './core/cache/TextChannelCache';
 
 // Managers
 export * from './core/managers/UserManager';
 export * from './core/managers/GuildManager';
 export * from './core/managers/GuildMemberManager';
 export * from './core/managers/GuildChannelManager';
+export * from './core/managers/MessageManager';
 
 // Rest
 export * from './core/rest/RequestManager';
@@ -24,6 +26,11 @@ export * from './core/cluster/ClusterManager';
 export * from './core/cluster/ClusterClient';
 export * from './core/cluster/IPC';
 
+// Events
+export * from './core/events/ClientEvents';
+export * from './core/events/ClusterEvents';
+export * from './core/events/ShardEvents';
+
 // Classes
 export * from './core/classes/Collection';
 export * from './core/classes/Guild';
@@ -34,3 +41,4 @@ export * from './core/classes/User';
 export * from './core/classes/TextChannel';
 export * from './core/classes/ShardPayload';
 export * from './core/classes/IPCMessage';
+export * from './core/classes/Observable';

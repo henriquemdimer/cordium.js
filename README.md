@@ -22,7 +22,7 @@ npm install cordium.js
 - Fully customizable
 - Single dependency
 - Vertically scalable
-- Multi-threading support
+- Multi-core support
 
 ## Examples
 If you are going to copy these examples, remember to change the Discord authentication token, you can create a Bot and get its token here: [Discord Developers Portal](https://discord.com/developers/applications)

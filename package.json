@@ -1,7 +1,7 @@
 {
   "name": "cordium.js",
   "version": "0.0.1",
-  "description": "A multi-threaded vertically scalable library for interacting with the Discord API.",
+  "description": "A multi-core vertically scalable library for interacting with the Discord API.",
   "main": "build/index.js",
   "devDependencies": {
     "@eslint/js": "^9.5.0",
@@ -42,8 +42,8 @@
     "discordbot",
     "discordapp",
     "wrapper",
-    "multi-threaded",
-    "clusterized",
+    "multi-core",
+    "clustering",
     "api"
   ],
   "author": "vonderheimsk",

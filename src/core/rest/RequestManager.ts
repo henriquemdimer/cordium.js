@@ -11,7 +11,7 @@ export interface RequestOptions {
   method: HTTP_METHODS;
 
   /**
-   * The Discord api endpoint, the base url always will be (https://discord.com/v{version}), so you only need to specify the endpoint, EXAMPLE: /users or /channels.
+   * The Discord API endpoint, the base URL always will be (`https://discord.com/v{version}`), so you only need to specify the endpoint, EXAMPLE: /users or /channels.
    */
   endpoint: string;
 
@@ -21,7 +21,7 @@ export interface RequestOptions {
   body?: any;
 
   /**
-   * Whether to send the authorization token or not (NOTE if the AlwaysSendAuthorizationToken option is true, the token will be sent anyway)
+   * Whether to send the authorization token or not (NOTE if the alwaysSendAuthorizationHeader option is true, the token will be sent anyway)
    */
   auth?: boolean;
 

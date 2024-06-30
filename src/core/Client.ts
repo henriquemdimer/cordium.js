@@ -7,7 +7,7 @@ import { ClientEvents } from './events/ClientEvents';
 
 export interface ClientOptions {
   /**
-   * The intents tha will be sent to Discord gateway
+   * The intents that will be sent to Discord gateway
    */
   intents: number | number[];
 
@@ -34,7 +34,7 @@ export class Client {
   #token: string;
 
   /**
-   * Utility class to handle all HTTPs requests to Discord Api.
+   * Utility class to handle all HTTPS requests to Discord API.
    */
   public rest: RequestManager;
 
@@ -49,7 +49,7 @@ export class Client {
   public ready: boolean;
 
   /**
-   * Client options to customize every thing, such as api version, URLs, sharding, etc...
+   * Client options to customize every thing, such as API version, URLs, sharding, etc...
    */
   public options: ClientOptions;
 
@@ -64,7 +64,7 @@ export class Client {
   public user?: User;
 
   /**
-   * All events received from Discord gateway and other util events.
+   * All events received from Discord gateway and other utility events.
    */
   public events: ClientEvents;
 

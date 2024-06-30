@@ -25,11 +25,11 @@ import { Client, Intents } from '../build/index.js';
 
   // Subscribe to the "messageCreate" event.
   client.events.messageCreate.subscribe(async (message) => {
-    // Ignore the command if is exectued by a Bot.
+    // Ignore the command if is executed by a Bot.
     if(message.author.bot) return;
 
     if(message.content == '!ping') {
-      // Send a message referencied by the author message.
+      // Send a message referenced by the author message.
       // client.shards.ping is an average of the ping of all connected shards, in this case a single shard.
       return await message.sendReference(`My ping is: \`${client.shards.ping}\`ms`);
     }

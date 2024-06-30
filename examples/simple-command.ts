@@ -14,7 +14,7 @@ import { Client, Intents } from '../build/index.js';
 
   // Subscribe to the "messageCreate" event.
   client.events.messageCreate.subscribe(async (message) => {
-    // Ignore the command if is exectued by a Bot.
+    // Ignore the command if is executed by a Bot.
     if(message.author.bot) return;
 
     if(message.content == '!ping') {

@@ -161,3 +161,8 @@ import { ClusterManager, Intents } from 'cordium.js';
 - [ ] Be zero-dependency
 - [ ] Support on browsers
 - [ ] Support plugins
+
+## Contributors
+<a href="https://github.com/devdimer/cordium.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=devdimer/cordium.js" />
+</a>

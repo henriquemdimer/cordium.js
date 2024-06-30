@@ -14,7 +14,11 @@ export class Collection<T = {}> extends Map {
     return value;
   }
 
-  public toArray() {
+  public remove(key: any): boolean {
+    return super.delete(key);
+  }
+
+  public toArray(): T[] {
     return Array.from(this.values());
   }
 

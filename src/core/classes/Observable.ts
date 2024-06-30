@@ -1,31 +1,37 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { randomUUID } from 'node:crypto';
 
 import { Collection } from './Collection';
 
-export class Subscription<CallbackArgType = any> {
+export class Subscription<CallbackArgType> {
   readonly _id: string = randomUUID();
 	
-  constructor(public callback: (arg: CallbackArgType) => any) {}
+  constructor(
+	readonly observer: Observable<CallbackArgType>, 
+	public callback: (arg: CallbackArgType) => unknown
+  ) {}
+
+  public remove() {
+    return this.observer.removeSubscription(this);
+  }
 }
 
 export class Observable<CallbackArgType> {
-  public subscriptions = new Collection<Subscription>();
+  public subscriptions = new Collection<Subscription<CallbackArgType>>();
   
-  public notify(arg?: CallbackArgType) {
+  public notify(arg: CallbackArgType) {
     for(const subscription of this.subscriptions.toArray()) {
       subscription.callback(arg);
     }
   }
 
-  public remove(subscription: string | Subscription) {
+  public removeSubscription(subscription: Subscription<CallbackArgType> | string) {
     const subscriptionId = typeof subscription === 'string' ? subscription : subscription._id;
 
-    this.subscriptions.remove(subscriptionId);
+    return !!this.subscriptions.remove(subscriptionId);
   }
 
-  public subscribe(callback: (arg: CallbackArgType) => any) {
-    const subscription = new Subscription(callback);
+  public subscribe(callback: (arg: CallbackArgType) => unknown) {
+    const subscription = new Subscription(this, callback);
 
     this.subscriptions.set(subscription._id, subscription);
 

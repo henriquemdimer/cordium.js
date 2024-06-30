@@ -1,13 +1,33 @@
-export class Observable<T> {
-  public observers: ((arg: T) => void)[] = [];
+import { randomUUID } from 'node:crypto'
 
-  public subscribe(callback: (arg: T) => void) {
-    this.observers.push(callback);
-  }
+import { Collection } from './Collection'
 
-  public notify(arg?: T) {
-    for(const observer of this.observers) {
-      observer(arg || {} as T);
-    }
-  }
+export class Subscription<CallbackArgType = any> {
+	readonly _id: string = randomUUID()
+	
+	constructor(public callback: (arg: CallbackArgType) => any) {}
+}
+
+export class Observable<CallbackArgType> {
+	public subscriptions = new Collection<Subscription>()
+  
+	public notify(arg?: CallbackArgType) {
+		for(const subscription of this.subscriptions.toArray()) {
+			subscription.callback(arg)
+		}
+	}
+
+	public remove(subscription: string | Subscription) {
+		const subscriptionId = typeof subscription === 'string' ? subscription : subscription._id
+
+		this.subscriptions.remove(subscriptionId)
+	}
+
+	public subscribe(callback: (arg: CallbackArgType) => any) {
+		const subscription = new Subscription(callback)
+
+		this.subscriptions.set(subscription._id, subscription)
+
+		return subscription
+	}
 }

@@ -1,6 +1,7 @@
-import { request } from 'https';
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { request } from 'https';
 import { Client } from '../Client';
+import { version, name } from '../../../package.json';
 
 export type HTTP_METHODS = 'get' | 'GET' | 'post' | 'POST' | 'delete' | 'DELETE' | 'patch' | 'PATCH';
 
@@ -11,7 +12,7 @@ export interface RequestOptions {
   method: HTTP_METHODS;
 
   /**
-   * The Discord API endpoint, the base URL always will be (`https://discord.com/v{version}`), so you only need to specify the endpoint, EXAMPLE: /users or /channels.
+   * The Discord API endpoint, the base URL always will be (`https://discord.com/api/v{version}`), so you only need to specify the endpoint, EXAMPLE: /users, /channels, etc...
    */
   endpoint: string;
 
@@ -34,11 +35,15 @@ export interface RequestOptions {
 export interface RequestManagerOptions {
   /**
    * The API version of Discord.
+   *
+   * @defaultValue 10
    */
   apiVersion?: string | number;
 
   /**
    * If the request method will always send authorization token.
+   *
+   * @defaultValue false
    */
   alwaysSendAuthorizationHeader?: boolean;
 }
@@ -89,12 +94,12 @@ export class RequestManager {
 
       const requestOptions = {
         host: 'discord.com',
-        path: `/api/v${this.#client.options.rest.apiVersion}/${options.endpoint}`,
+        path: `/api/v${this.#client.options.rest.apiVersion}${options.endpoint}`,
         method: options.method,
         headers: {
           'Authorization': `${options.auth ? `Bot ${this.#token}` : this.#client.options.rest.alwaysSendAuthorizationHeader ? `Bot ${this.#token}` : ''}`,
           'Content-Type': 'application/json',
-          'User-Agent': 'Edwiges/1.0.0',
+          'User-Agent': `${name}/${version}`,
           ...options.headers,
         }
       };

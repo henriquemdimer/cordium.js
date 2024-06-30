@@ -6,6 +6,7 @@ import { Guild } from '../classes/Guild';
 import { Message } from '../classes/Message';
 import { TextChannel } from '../classes/TextChannel';
 import { ShardEvents } from '../events/ShardEvents';
+import { version, name } from '../../../package.json';
 
 export class Shard {
   #token: string;
@@ -134,8 +135,8 @@ export class Shard {
       shard: [this.id, (this.#client.options.sharding.lastShardId || 0)],
       properties: {
         $os: process.platform,
-        $browser: 'Edwiges/1.0.0',
-        $device: 'Edwiges/1.0.0',
+        $browser: `${name}/${version}`,
+        $device: `${name}/${version}`,
       },
     });
   }

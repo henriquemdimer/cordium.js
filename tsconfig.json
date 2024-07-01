@@ -10,7 +10,8 @@
     "declaration": true,
     "isolatedModules": true,
     "noEmit": true,
-    "outDir": "./build"
+    "outDir": "./build",
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

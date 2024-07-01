@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import EventEmitter from 'events';
-import { IPCMessage } from '../classes/IPCMessage';
+import { IPCData, IPCEvent, IPCMessage } from '../classes/IPCMessage';
 import VM from 'node:vm';
 import { ClusterClient } from './ClusterClient';
 
@@ -20,39 +20,38 @@ export class IPC extends EventEmitter {
 
       this.emit('message', msg);
       switch (msg.event) {
-      case 'data-request': {
-        if (!msg.data) return;
+      case 'data-request':
+        try {
+          if (!msg.data) return;
 
-        const context = { client: this.#client, process };
-        VM.createContext(context);
+          const context = { client: this.#client, process };
+          VM.createContext(context);
 
-        const result = VM.runInContext(msg.data, context);
-        this.reply(msg.from, msg.cid, 'data-response', result);
+          const result = VM.runInContext(msg.data.content as string, context);
+          msg.reply('data-response', { workerId: this.#client.workerId, workerPid: this.pid, content: result ?? null }, msg.from);
+        } catch(err: any) {
+          msg.reply('data-response', { error: true, workerId: this.#client.workerId, workerPid: this.pid, content: err.message }, msg.from);
+        }
         break;
-      }
       }
     });
   }
 
-  public reply(to: number | string, cid: string, event: string, result: any) {
-    process.send?.(new IPCMessage({ to, cid, result: { workerPid: this.pid, workerId: this.#client.workerId, data: result }, from: this.pid, event }));
+  public send(to: number | string, data: IPCData, event: IPCEvent, cid?: string) {
+    process.send?.(new IPCMessage({ to, from: this.pid, cid: cid || this.generateCID(), data, event }));
   }
 
-  public send(to: number | string, cid: string, data: any, event: string) {
-    process.send?.(new IPCMessage({ to, from: this.pid, cid, data, event }));
-  }
-
-  public broadcast(data: any): Promise<any> {
+  public broadcast(data: IPCData['content']): Promise<Array<IPCData>> {
     return new Promise((resolve) => {
       const id = IPCMessage.generateCID();
-      this.send('master', id, data, 'broadcast-request');
+      this.send('master', { workerId: this.#client.workerId, workerPid: this.pid, content: data }, 'broadcast-request', id);
 
       const callback = (message: any) => {
         const response = new IPCMessage(message);
         if (!response || !response.cid || response.cid !== id) return;
 
         process.removeListener('message', callback);
-        resolve(response.data);
+        resolve(response.data.content as Array<IPCData>);
       };
 
       process.on('message', callback);

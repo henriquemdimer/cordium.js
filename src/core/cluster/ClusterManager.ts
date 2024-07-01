@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ClientOptions } from '../Client';
 import Cluster, { Worker } from 'cluster';
-import { IPCMessage, IResult } from '../classes/IPCMessage';
+import { IPCData, IPCMessage } from '../classes/IPCMessage';
 import { ClusterClient } from './ClusterClient';
 import { ClusterEvents } from '../events/ClusterEvents';
 import { Collection } from '../classes/Collection';
@@ -64,7 +64,7 @@ export class ClusterManager extends Collection<Worker> {
           switch (msg.event) {
           case 'broadcast-request': {
             let reqsSent = 0;
-            const result: IResult[] = [];
+            const results: IPCData[] = [];
             const cid = IPCMessage.generateCID();
 
             for (const worker of super.toArray()) {
@@ -73,12 +73,12 @@ export class ClusterManager extends Collection<Worker> {
 
               const callback = (message: any) => {
                 const response = new IPCMessage(message);
-                if (response.cid !== cid || response.result == undefined) return;
+                if (response.cid !== cid || !response.data) return;
 
-                result.push(response.result);
-                if (result.length >= reqsSent) {
+                results.push(response.data as IPCData);
+                if (results.length >= reqsSent) {
                   worker.removeListener('message', callback);
-                  sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', data: result, cid: msg.cid }));
+                  sender.send(new IPCMessage({ from: 'master', to: sender.process.pid || 0, event: 'broadcast-response', data: { workerPid: process.pid, workerId: 999, content: results }, cid: msg.cid }));
                 }
               };
 
@@ -92,13 +92,13 @@ export class ClusterManager extends Collection<Worker> {
             const target = super.get(msg.to);
             if(target) {
               target.send(new IPCMessage({ from: msg.from, to: target.process.pid, event: msg.event, cid: msg.cid, data: msg.data }));
-              let result: IResult;
+              let result: IPCData;
 
               const callback = (message: any) => {
                 const response = new IPCMessage(message);
-                if(!response || response.cid != msg.cid || !response.result) return;
+                if(!response || response.cid != msg.cid || !response.data) return;
 
-                result = response.result;
+                result = response.data;
                 target.removeListener('message', callback);
                 sender.send(new IPCMessage({ from: msg.to || '', to: msg.from, event: 'data-response', cid: msg.cid, data: result }));
               };

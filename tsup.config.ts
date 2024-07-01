@@ -7,5 +7,6 @@ export default defineConfig({
   shims: true,
   skipNodeModulesBundle: true,
   clean: true,
-  outDir: './build'
+  outDir: './build',
+  minify: 'terser'
 });

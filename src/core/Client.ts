@@ -119,7 +119,7 @@ export class Client {
       auth: true
     });
 
-    this.user = new User(this, me);
+    this.user = new User(this, me.data);
     return this.user;
   }
 

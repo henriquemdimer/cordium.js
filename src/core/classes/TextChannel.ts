@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TextChannelCache } from '../cache/TextChannelCache';
 import { Client } from '../Client';
+import { RequestReponse } from '../rest/RequestManager';
 import { Guild } from './Guild';
 import { GuildChannel } from './GuildChannel';
 import { Message } from './Message';
@@ -58,10 +59,10 @@ export class TextChannel extends GuildChannel {
       auth: true
     });
 
-    return new Message(this.#client, res);
+    return new Message(this.#client, res.data);
   }
 
-  public async deleteMessage(id: string) {
+  public async deleteMessage(id: string): Promise<RequestReponse> {
     return await this.#client.rest.request({ method: 'DELETE', endpoint: `/channels/${this.id}/messages/${id}`, auth: true });
   }
 }

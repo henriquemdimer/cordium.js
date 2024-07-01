@@ -2,6 +2,7 @@
 import { request } from 'https';
 import { Client } from '../Client';
 import { version, name } from '../../../package.json';
+import { IncomingHttpHeaders, RequestOptions as HTTPRequestOptions } from 'http';
 
 export type HTTP_METHODS = 'get' | 'GET' | 'post' | 'POST' | 'delete' | 'DELETE' | 'patch' | 'PATCH';
 
@@ -49,6 +50,38 @@ export interface RequestManagerOptions {
 }
 
 /**
+ * Represents a response from Discord API.
+ */
+export class RequestReponse {
+  public constructor(
+    /**
+     * Response body data.
+     */
+    public data: any,
+
+    /**
+     * Response status text.
+     */
+    public statusText: string,
+
+    /**
+     * Response status code.
+     */
+    public statusCode: number | null,
+
+    /**
+     * The options sent to Discord API.
+     */
+    public request: HTTPRequestOptions,
+
+    /**
+     * Headers received from Discord API.
+     */
+    public headers: IncomingHttpHeaders
+  ) {}
+}
+
+/**
  * Represents a RequestManager.
  */
 export class RequestManager {
@@ -85,10 +118,10 @@ export class RequestManager {
    * });
    * 
    * // Raw user object from API
-   * console.log(user);
+   * console.log(user.data);
    * ```
    */
-  public request(options: RequestOptions) {
+  public request(options: RequestOptions): Promise<RequestReponse> {
     return new Promise((resolve, reject) => {
       if (!options || typeof options != 'object') throw new Error('RequestManager.request(options): options is missing or invalid.');
 
@@ -113,14 +146,14 @@ export class RequestManager {
             if(chunk && chunk.length) body += chunk;
           });
           
-          // Criar uma classe de resposta da API.
           res.on('end', () => {
             try {
               const parsed = body.length ? JSON.parse(body) : {};
-              if (res.statusCode === 200) {
-                resolve(parsed);
+              const response = new RequestReponse(parsed, res.statusMessage || '', res.statusCode || null, requestOptions, res.headers);
+              if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
+                resolve(response);
               } else {
-                reject(parsed);
+                reject(response);
               }
             } catch(err) {
               reject(err);

@@ -47,7 +47,7 @@ export class Shard {
   }
 
   private onOpen() {
-    this.events.connect.notify();
+    this.events.connect.notify(null);
   }
 
   private onMessage(msg: MessageEvent) {
@@ -67,7 +67,7 @@ export class Shard {
       case 11:
         this.lastHearbeatAck = Date.now();
         this.ping = this.lastHearbeatAck - this.lastHearbeatSent;
-        this.events.pingUpdate.notify();
+        this.events.pingUpdate.notify(null);
         break;
 
       case 9:

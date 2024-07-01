@@ -1,3 +1,8 @@
+<p align="center">
+  <a href="https://www.npmjs.com/package/cordium.js"><img alt="NPM Version" src="https://img.shields.io/npm/v/cordium.js?style=for-the-badge" /></a>
+  <a href="https://www.npmjs.com/package/cordium.js"><img alt="NPM Downloads" src="https://img.shields.io/npm/dw/cordium.js?style=for-the-badge"></a>
+</p>
+
 ## About
 Cordium.js is a library written in [Typescript](https://www.typescriptlang.org/) that aims to assist in the development of bots for Discord, the library has several classes, managers and interfaces to facilitate the interaction with the [Discord API](https://discord.com/developers/docs/intro), in addition to being fully customizable, cordium.js is still in the alpha phase of development and is not ready to be used in production.
 

@@ -1,0 +1,67 @@
+# Interface: ClusterManagerOptions
+
+## Extends
+
+- [`ClientOptions`](ClientOptions.mdx)
+
+## Properties
+
+### clustering
+
+> **clustering**: `object`
+
+| Name | Type | Defined in |
+| ------ | ------ | ------ |
+| `totalWorkers` | `number` | [src/core/cluster/ClusterManager.ts:11](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/cluster/ClusterManager.ts#L11) |
+
+#### Defined in
+
+[src/core/cluster/ClusterManager.ts:10](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/cluster/ClusterManager.ts#L10)
+
+***
+
+### intents
+
+> **intents**: `number` \| `number`[]
+
+The intents that will be sent to Discord gateway
+
+#### Inherited from
+
+[`ClientOptions`](ClientOptions.mdx).[`intents`](ClientOptions.mdx#intents)
+
+#### Defined in
+
+[src/core/Client.ts:12](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/Client.ts#L12)
+
+***
+
+### rest
+
+> **rest**: [`RequestManagerOptions`](RequestManagerOptions.mdx)
+
+Request manager options
+
+#### Inherited from
+
+[`ClientOptions`](ClientOptions.mdx).[`rest`](ClientOptions.mdx#rest)
+
+#### Defined in
+
+[src/core/Client.ts:17](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/Client.ts#L17)
+
+***
+
+### sharding
+
+> **sharding**: [`ShardingOptions`](ShardingOptions.mdx)
+
+Gateway manager options
+
+#### Inherited from
+
+[`ClientOptions`](ClientOptions.mdx).[`sharding`](ClientOptions.mdx#sharding)
+
+#### Defined in
+
+[src/core/Client.ts:22](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/Client.ts#L22)

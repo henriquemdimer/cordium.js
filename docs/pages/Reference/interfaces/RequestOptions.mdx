@@ -1,0 +1,65 @@
+# Interface: RequestOptions
+
+## Properties
+
+### auth?
+
+> `optional` **auth**: `boolean`
+
+Whether to send the authorization token or not (NOTE if the alwaysSendAuthorizationHeader option is true, the token will be sent anyway)
+
+#### Defined in
+
+[src/core/rest/RequestManager.ts:28](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/rest/RequestManager.ts#L28)
+
+***
+
+### body?
+
+> `optional` **body**: `any`
+
+The HTTP request body.
+
+#### Defined in
+
+[src/core/rest/RequestManager.ts:23](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/rest/RequestManager.ts#L23)
+
+***
+
+### endpoint
+
+> **endpoint**: `string`
+
+The Discord API endpoint, the base URL always will be (`https://discord.com/api/v{version}`), so you only need to specify the endpoint, EXAMPLE: /users, /channels, etc...
+
+#### Defined in
+
+[src/core/rest/RequestManager.ts:18](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/rest/RequestManager.ts#L18)
+
+***
+
+### headers?
+
+> `optional` **headers**: `object`
+
+The HTTP request headers.
+
+#### Index Signature
+
+ \[`key`: `string`\]: `string`
+
+#### Defined in
+
+[src/core/rest/RequestManager.ts:33](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/rest/RequestManager.ts#L33)
+
+***
+
+### method
+
+> **method**: [`HTTP_METHODS`](../type-aliases/HTTP_METHODS.mdx)
+
+The HTTP method that will be used to make the request.
+
+#### Defined in
+
+[src/core/rest/RequestManager.ts:13](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/rest/RequestManager.ts#L13)

@@ -19,7 +19,7 @@ export class Collection<T = {}> extends Map {
   }
 
   public toArray(): T[] {
-    return Array.from(this.values());
+    return Array.from(super.values());
   }
 
   public first() {
@@ -27,10 +27,10 @@ export class Collection<T = {}> extends Map {
   }
 
   public last() {
-    return this.toArray()[this.size - 1];
+    return this.toArray()[super.size - 1];
   }
 
   public random() {
-    return this.toArray()[Math.floor(Math.random() * this.size)];
+    return this.toArray()[Math.floor(Math.random() * super.size)];
   }
 }

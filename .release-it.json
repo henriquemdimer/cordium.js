@@ -5,8 +5,9 @@
     "releaseName": "Release ${version}",
     "tokenRef": "GTOKEN",
     "push": true,
+    "comments": true,
     "comments": {
-      "submit": false,
+      "submit": true,
       "issue": ":rocket: _This issue has been resolved in v${version}. See [${releaseName}](${releaseUrl}) for release notes._",
       "pr": ":rocket: _This pull request is included in v${version}. See [${releaseName}](${releaseUrl}) for release notes._"
     }
@@ -15,5 +16,10 @@
     "publish": true,
     "allowSameVersion": true,
     "publishPath": "."
+  },
+  "plugins": {
+    "@release-it/keep-a-changelog": {
+      "filename": "CHANGELOG.md"
+    }
   }
 }

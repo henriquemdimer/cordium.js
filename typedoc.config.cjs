@@ -5,5 +5,10 @@ module.exports = {
   plugin: ['typedoc-plugin-markdown'],
   parametersFormat: 'table',
   fileExtension: '.mdx',
-  classPropertiesFormat: 'table'
+  classPropertiesFormat: 'table',
+  hidePageHeader: true,
+  hideBreadcrumbs: true,
+  propertyMembersFormat: 'table',
+  enumMembersFormat: 'table',
+  typeDeclarationFormat: 'table',
 };

@@ -47,14 +47,11 @@ export class ClusterManager extends Collection<Worker> {
         worker.setMaxListeners(9999);
         super.set(worker.process.pid, worker);
 
-        worker.send({ index: i, token: this.#token, shards: chunk, total: this.options.sharding?.totalShards || 2, event: 'master-initial' });
+        worker.send({ index: i, shards: chunk, total: this.options.sharding?.totalShards || 2, event: 'master-initial' });
         
         worker.on('exit', () => {
-          console.log('exit');
           this.events.workerExit.notify(worker);
-
-          super.delete(worker.process.pid);
-          console.log('ei');
+          super.remove(worker.process.pid);
         });
 
         worker.on('message', (message) => {
@@ -124,7 +121,7 @@ export class ClusterManager extends Collection<Worker> {
             },
           };
 
-          const client = new ClusterClient(msg.token, options, msg.index);
+          const client = new ClusterClient(this.#token, options, msg.index);
           this.events.workerSpawned.notify(client);
         }
       });

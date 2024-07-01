@@ -1,9 +1,3 @@
-[**cordium.js**](../README.mdx) • **Docs**
-
-***
-
-[cordium.js](../globals.mdx) / Collection
-
 # Class: Collection\<T\>
 
 ## Extends
@@ -16,6 +10,7 @@
 - [`GuildManager`](GuildManager.mdx)
 - [`GuildMemberManager`](GuildMemberManager.mdx)
 - [`GuildChannelManager`](GuildChannelManager.mdx)
+- [`MessageManager`](MessageManager.mdx)
 - [`GatewayManager`](GatewayManager.mdx)
 - [`ClusterManager`](ClusterManager.mdx)
 
@@ -41,7 +36,7 @@
 
 #### Defined in
 
-[src/core/classes/Collection.ts:4](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L4)
+[src/core/classes/Collection.ts:4](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L4)
 
 ## Properties
 
@@ -139,15 +134,15 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 ### first()
 
-> **first**(): `any`
+> **first**(): `T`
 
 #### Returns
 
-`any`
+`T`
 
 #### Defined in
 
-[src/core/classes/Collection.ts:21](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L21)
+[src/core/classes/Collection.ts:25](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L25)
 
 ***
 
@@ -208,7 +203,7 @@ Returns the element associated with the specified key. If no element is associat
 
 #### Defined in
 
-[src/core/classes/Collection.ts:8](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L8)
+[src/core/classes/Collection.ts:8](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L8)
 
 ***
 
@@ -260,29 +255,49 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ### last()
 
-> **last**(): `any`
+> **last**(): `T`
 
 #### Returns
 
-`any`
+`T`
 
 #### Defined in
 
-[src/core/classes/Collection.ts:25](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L25)
+[src/core/classes/Collection.ts:29](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L29)
 
 ***
 
 ### random()
 
-> **random**(): `any`
+> **random**(): `T`
 
 #### Returns
 
-`any`
+`T`
 
 #### Defined in
 
-[src/core/classes/Collection.ts:29](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L29)
+[src/core/classes/Collection.ts:33](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L33)
+
+***
+
+### remove()
+
+> **remove**(`key`): `boolean`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `key` | `any` |
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/core/classes/Collection.ts:17](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L17)
 
 ***
 
@@ -315,21 +330,21 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:12](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L12)
+[src/core/classes/Collection.ts:12](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L12)
 
 ***
 
 ### toArray()
 
-> **toArray**(): `any`[]
+> **toArray**(): `T`[]
 
 #### Returns
 
-`any`[]
+`T`[]
 
 #### Defined in
 
-[src/core/classes/Collection.ts:17](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L17)
+[src/core/classes/Collection.ts:21](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L21)
 
 ***
 

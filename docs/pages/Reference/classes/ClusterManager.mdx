@@ -1,9 +1,3 @@
-[**cordium.js**](../README.mdx) • **Docs**
-
-***
-
-[cordium.js](../globals.mdx) / ClusterManager
-
 # Class: ClusterManager
 
 ## Extends
@@ -33,15 +27,15 @@
 
 #### Defined in
 
-[src/core/cluster/ClusterManager.ts:20](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterManager.ts#L20)
+[src/core/cluster/ClusterManager.ts:20](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterManager.ts#L20)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from | Defined in |
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | `[toStringTag]` | `readonly` | `string` | - | [`Collection`](Collection.mdx).`[toStringTag]` | node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:137 |
-| `events` | `public` | `ClusterEvents` | - | - | [src/core/cluster/ClusterManager.ts:18](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterManager.ts#L18) |
-| `options` | `public` | `Partial`\<[`ClusterManagerOptions`](../interfaces/ClusterManagerOptions.mdx)\> | - | - | [src/core/cluster/ClusterManager.ts:17](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterManager.ts#L17) |
+| `events` | `public` | [`ClusterEvents`](ClusterEvents.mdx) | - | - | [src/core/cluster/ClusterManager.ts:18](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterManager.ts#L18) |
+| `options` | `public` | `Partial`\<[`ClusterManagerOptions`](../interfaces/ClusterManagerOptions.mdx)\> | - | - | [src/core/cluster/ClusterManager.ts:17](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterManager.ts#L17) |
 | `size` | `readonly` | `number` |  | [`Collection`](Collection.mdx).`size` | node\_modules/typescript/lib/lib.es2015.collection.d.ts:45 |
 | `[species]` | `readonly` | `MapConstructor` | - | [`Collection`](Collection.mdx).`[species]` | node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:319 |
 
@@ -133,11 +127,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 ### first()
 
-> **first**(): `any`
+> **first**(): `Worker`
 
 #### Returns
 
-`any`
+`Worker`
 
 #### Inherited from
 
@@ -145,7 +139,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 #### Defined in
 
-[src/core/classes/Collection.ts:21](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L21)
+[src/core/classes/Collection.ts:25](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L25)
 
 ***
 
@@ -206,7 +200,7 @@ Returns the element associated with the specified key. If no element is associat
 
 #### Defined in
 
-[src/core/classes/Collection.ts:8](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L8)
+[src/core/classes/Collection.ts:8](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L8)
 
 ***
 
@@ -246,7 +240,7 @@ node\_modules/typescript/lib/lib.es2015.collection.d.ts:37
 
 #### Defined in
 
-[src/core/cluster/ClusterManager.ts:27](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterManager.ts#L27)
+[src/core/cluster/ClusterManager.ts:27](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterManager.ts#L27)
 
 ***
 
@@ -272,11 +266,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ### last()
 
-> **last**(): `any`
+> **last**(): `Worker`
 
 #### Returns
 
-`any`
+`Worker`
 
 #### Inherited from
 
@@ -284,17 +278,17 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:25](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L25)
+[src/core/classes/Collection.ts:29](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L29)
 
 ***
 
 ### random()
 
-> **random**(): `any`
+> **random**(): `Worker`
 
 #### Returns
 
-`any`
+`Worker`
 
 #### Inherited from
 
@@ -302,7 +296,31 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:29](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L29)
+[src/core/classes/Collection.ts:33](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L33)
+
+***
+
+### remove()
+
+> **remove**(`key`): `boolean`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `key` | `any` |
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`Collection`](Collection.mdx).[`remove`](Collection.mdx#remove)
+
+#### Defined in
+
+[src/core/classes/Collection.ts:17](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L17)
 
 ***
 
@@ -335,17 +353,17 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:12](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L12)
+[src/core/classes/Collection.ts:12](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L12)
 
 ***
 
 ### toArray()
 
-> **toArray**(): `any`[]
+> **toArray**(): `Worker`[]
 
 #### Returns
 
-`any`[]
+`Worker`[]
 
 #### Inherited from
 
@@ -353,7 +371,7 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:17](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/Collection.ts#L17)
+[src/core/classes/Collection.ts:21](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Collection.ts#L21)
 
 ***
 

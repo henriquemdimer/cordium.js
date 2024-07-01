@@ -1,0 +1,83 @@
+# Class: Observable\<CallbackArgType\>
+
+## Type Parameters
+
+| Type Parameter |
+| ------ |
+| `CallbackArgType` |
+
+## Constructors
+
+### new Observable()
+
+> **new Observable**\<`CallbackArgType`\>(): [`Observable`](Observable.mdx)\<`CallbackArgType`\>
+
+#### Returns
+
+[`Observable`](Observable.mdx)\<`CallbackArgType`\>
+
+## Properties
+
+| Property | Modifier | Type | Defined in |
+| ------ | ------ | ------ | ------ |
+| `subscriptions` | `public` | [`Collection`](Collection.mdx)\<[`Subscription`](Subscription.mdx)\<`CallbackArgType`\>\> | [src/core/classes/Observable.ts:19](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Observable.ts#L19) |
+
+## Methods
+
+### notify()
+
+> **notify**(`arg`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `arg` | `CallbackArgType` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/core/classes/Observable.ts:21](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Observable.ts#L21)
+
+***
+
+### removeSubscription()
+
+> **removeSubscription**(`subscription`): `boolean`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `subscription` | `string` \| [`Subscription`](Subscription.mdx)\<`CallbackArgType`\> |
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/core/classes/Observable.ts:27](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Observable.ts#L27)
+
+***
+
+### subscribe()
+
+> **subscribe**(`callback`): [`Subscription`](Subscription.mdx)\<`CallbackArgType`\>
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `callback` | (`arg`) => `unknown` |
+
+#### Returns
+
+[`Subscription`](Subscription.mdx)\<`CallbackArgType`\>
+
+#### Defined in
+
+[src/core/classes/Observable.ts:33](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/Observable.ts#L33)

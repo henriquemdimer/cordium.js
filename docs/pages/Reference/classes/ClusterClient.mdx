@@ -1,9 +1,3 @@
-[**cordium.js**](../README.mdx) • **Docs**
-
-***
-
-[cordium.js](../globals.mdx) / ClusterClient
-
 # Class: ClusterClient
 
 Represents a socket based Client.
@@ -23,7 +17,7 @@ Represents a socket based Client.
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `token` | `string` | - |
-| `options` | `Partial`\<[`ClientOptions`](../interfaces/ClientOptions.mdx)\> | Client options to customize every thing, such as api version, URLs, sharding, etc... |
+| `options` | `Partial`\<[`ClientOptions`](../interfaces/ClientOptions.mdx)\> | Client options to customize every thing, such as API version, URLs, sharding, etc... |
 | `workerId` | `number` | - |
 
 #### Returns
@@ -36,22 +30,22 @@ Represents a socket based Client.
 
 #### Defined in
 
-[src/core/cluster/ClusterClient.ts:8](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterClient.ts#L8)
+[src/core/cluster/ClusterClient.ts:8](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterClient.ts#L8)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from | Defined in |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| `#token` | `protected` | `string` | The Discord authorization token. | [`Client`](Client.mdx).`#token` | [src/core/Client.ts:34](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L34) |
-| `cache` | `public` | [`ClientCache`](ClientCache.mdx) | Client cache utility will store Guild objects when received from Discord gateway and API, | [`Client`](Client.mdx).`cache` | [src/core/Client.ts:59](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L59) |
-| `events` | `public` | `ClientEvents` | All events received from Discord gateway and other util events. | [`Client`](Client.mdx).`events` | [src/core/Client.ts:69](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L69) |
-| `ipc` | `public` | [`IPC`](IPC.mdx) | - | - | [src/core/cluster/ClusterClient.ts:5](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterClient.ts#L5) |
-| `options` | `public` | [`ClientOptions`](../interfaces/ClientOptions.mdx) | Client options to customize every thing, such as api version, URLs, sharding, etc... | [`Client`](Client.mdx).`options` | [src/core/Client.ts:54](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L54) |
-| `ready` | `public` | `boolean` | Whether has completed the initialization setup and is fully connected to Discord gateway. | [`Client`](Client.mdx).`ready` | [src/core/Client.ts:49](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L49) |
-| `rest` | `public` | [`RequestManager`](RequestManager.mdx) | Utility class to handle all HTTPs requests to Discord Api. | [`Client`](Client.mdx).`rest` | [src/core/Client.ts:39](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L39) |
-| `shards` | `public` | [`GatewayManager`](GatewayManager.mdx) | Gateway manager, handle all shards connection. | [`Client`](Client.mdx).`shards` | [src/core/Client.ts:44](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L44) |
-| `user?` | `public` | [`User`](User.mdx) | The client user. | [`Client`](Client.mdx).`user` | [src/core/Client.ts:64](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L64) |
-| `workerId` | `public` | `number` | - | - | [src/core/cluster/ClusterClient.ts:6](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/ClusterClient.ts#L6) |
+| `#token` | `protected` | `string` | The Discord authorization token. | [`Client`](Client.mdx).`#token` | [src/core/Client.ts:34](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L34) |
+| `cache` | `public` | [`ClientCache`](ClientCache.mdx) | Client cache utility will store Guild objects when received from Discord gateway and API, | [`Client`](Client.mdx).`cache` | [src/core/Client.ts:59](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L59) |
+| `events` | `public` | [`ClientEvents`](ClientEvents.mdx) | All events received from Discord gateway and other utility events. | [`Client`](Client.mdx).`events` | [src/core/Client.ts:69](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L69) |
+| `ipc` | `public` | [`IPC`](IPC.mdx) | - | - | [src/core/cluster/ClusterClient.ts:5](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterClient.ts#L5) |
+| `options` | `public` | [`ClientOptions`](../interfaces/ClientOptions.mdx) | Client options to customize every thing, such as API version, URLs, sharding, etc... | [`Client`](Client.mdx).`options` | [src/core/Client.ts:54](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L54) |
+| `ready` | `public` | `boolean` | Whether has completed the initialization setup and is fully connected to Discord gateway. | [`Client`](Client.mdx).`ready` | [src/core/Client.ts:49](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L49) |
+| `rest` | `public` | [`RequestManager`](RequestManager.mdx) | Utility class to handle all HTTPS requests to Discord API. | [`Client`](Client.mdx).`rest` | [src/core/Client.ts:39](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L39) |
+| `shards` | `public` | [`GatewayManager`](GatewayManager.mdx) | Gateway manager, handle all shards connection. | [`Client`](Client.mdx).`shards` | [src/core/Client.ts:44](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L44) |
+| `user?` | `public` | [`User`](User.mdx) | The client user. | [`Client`](Client.mdx).`user` | [src/core/Client.ts:64](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L64) |
+| `workerId` | `public` | `number` | - | - | [src/core/cluster/ClusterClient.ts:6](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/ClusterClient.ts#L6) |
 
 ## Methods
 
@@ -81,7 +75,7 @@ console.log(user);
 
 #### Defined in
 
-[src/core/Client.ts:115](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L115)
+[src/core/Client.ts:115](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L115)
 
 ***
 
@@ -105,4 +99,4 @@ await client.init();
 
 #### Defined in
 
-[src/core/Client.ts:133](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/Client.ts#L133)
+[src/core/Client.ts:133](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/Client.ts#L133)

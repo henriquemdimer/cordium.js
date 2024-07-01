@@ -1,9 +1,3 @@
-[**cordium.js**](../README.mdx) • **Docs**
-
-***
-
-[cordium.js](../globals.mdx) / RequestOptions
-
 # Interface: RequestOptions
 
 ## Properties
@@ -12,11 +6,11 @@
 
 > `optional` **auth**: `boolean`
 
-Whether to send the authorization token or not (NOTE if the AlwaysSendAuthorizationToken option is true, the token will be sent anyway)
+Whether to send the authorization token or not (NOTE if the alwaysSendAuthorizationHeader option is true, the token will be sent anyway)
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:26](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L26)
+[src/core/rest/RequestManager.ts:28](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/rest/RequestManager.ts#L28)
 
 ***
 
@@ -28,7 +22,7 @@ The HTTP request body.
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:21](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L21)
+[src/core/rest/RequestManager.ts:23](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/rest/RequestManager.ts#L23)
 
 ***
 
@@ -36,11 +30,11 @@ The HTTP request body.
 
 > **endpoint**: `string`
 
-The Discord api endpoint, the base url always will be (https://discord.com/v{version}), so you only need to specify the endpoint, EXAMPLE: /users or /channels.
+The Discord API endpoint, the base URL always will be (`https://discord.com/api/v{version}`), so you only need to specify the endpoint, EXAMPLE: /users, /channels, etc...
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:16](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L16)
+[src/core/rest/RequestManager.ts:18](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/rest/RequestManager.ts#L18)
 
 ***
 
@@ -56,7 +50,7 @@ The HTTP request headers.
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:31](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L31)
+[src/core/rest/RequestManager.ts:33](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/rest/RequestManager.ts#L33)
 
 ***
 
@@ -68,4 +62,4 @@ The HTTP method that will be used to make the request.
 
 #### Defined in
 
-[src/core/rest/RequestManager.ts:11](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/rest/RequestManager.ts#L11)
+[src/core/rest/RequestManager.ts:13](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/rest/RequestManager.ts#L13)

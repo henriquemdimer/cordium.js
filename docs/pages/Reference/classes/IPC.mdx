@@ -1,9 +1,3 @@
-[**cordium.js**](../README.mdx) • **Docs**
-
-***
-
-[cordium.js](../globals.mdx) / IPC
-
 # Class: IPC
 
 ## Extends
@@ -33,13 +27,13 @@
 
 #### Defined in
 
-[src/core/cluster/IPC.ts:11](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/IPC.ts#L11)
+[src/core/cluster/IPC.ts:11](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/IPC.ts#L11)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from | Defined in |
 | ------ | ------ | ------ | ------ | ------ | ------ |
-| `pid` | `public` | `number` | - | - | [src/core/cluster/IPC.ts:9](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/IPC.ts#L9) |
+| `pid` | `public` | `number` | - | - | [src/core/cluster/IPC.ts:9](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/IPC.ts#L9) |
 | `captureRejectionSymbol` | `readonly` | *typeof* `captureRejectionSymbol` | Value: `Symbol.for('nodejs.rejection')` See how to write a custom `rejection handler`. **Since** v13.4.0, v12.16.0 | `EventEmitter.captureRejectionSymbol` | node\_modules/@types/node/events.d.ts:430 |
 | `captureRejections` | `static` | `boolean` | Value: [boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type) Change the default `captureRejections` option on all new `EventEmitter` objects. **Since** v13.4.0, v12.16.0 | `EventEmitter.captureRejections` | node\_modules/@types/node/events.d.ts:437 |
 | `defaultMaxListeners` | `static` | `number` | By default, a maximum of `10` listeners can be registered for any single event. This limit can be changed for individual `EventEmitter` instances using the `emitter.setMaxListeners(n)` method. To change the default for _all_`EventEmitter` instances, the `events.defaultMaxListeners` property can be used. If this value is not a positive number, a `RangeError` is thrown. Take caution when setting the `events.defaultMaxListeners` because the change affects _all_ `EventEmitter` instances, including those created before the change is made. However, calling `emitter.setMaxListeners(n)` still has precedence over `events.defaultMaxListeners`. This is not a hard limit. The `EventEmitter` instance will allow more listeners to be added but will output a trace warning to stderr indicating that a "possible EventEmitter memory leak" has been detected. For any single `EventEmitter`, the `emitter.getMaxListeners()` and `emitter.setMaxListeners()` methods can be used to temporarily avoid this warning: `import { EventEmitter } from 'node:events'; const emitter = new EventEmitter(); emitter.setMaxListeners(emitter.getMaxListeners() + 1); emitter.once('event', () => { // do stuff emitter.setMaxListeners(Math.max(emitter.getMaxListeners() - 1, 0)); });` The `--trace-warnings` command-line flag can be used to display the stack trace for such warnings. The emitted warning can be inspected with `process.on('warning')` and will have the additional `emitter`, `type`, and `count` properties, referring to the event emitter instance, the event's name and the number of attached listeners, respectively. Its `name` property is set to `'MaxListenersExceededWarning'`. **Since** v0.11.2 | `EventEmitter.defaultMaxListeners` | node\_modules/@types/node/events.d.ts:476 |
@@ -118,21 +112,21 @@ node\_modules/@types/node/events.d.ts:575
 
 ### broadcast()
 
-> **broadcast**(`data`): `Promise`\<`any`\>
+> **broadcast**(`data`): `Promise`\<[`IPCData`](../interfaces/IPCData.mdx)[]\>
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `data` | `any` |
+| `data` | `unknown` |
 
 #### Returns
 
-`Promise`\<`any`\>
+`Promise`\<[`IPCData`](../interfaces/IPCData.mdx)[]\>
 
 #### Defined in
 
-[src/core/cluster/IPC.ts:45](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/IPC.ts#L45)
+[src/core/cluster/IPC.ts:44](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/IPC.ts#L44)
 
 ***
 
@@ -258,7 +252,7 @@ node\_modules/@types/node/events.d.ts:900
 
 #### Defined in
 
-[src/core/cluster/IPC.ts:62](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/IPC.ts#L62)
+[src/core/cluster/IPC.ts:61](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/IPC.ts#L61)
 
 ***
 
@@ -836,41 +830,18 @@ node\_modules/@types/node/events.d.ts:720
 
 ***
 
-### reply()
-
-> **reply**(`to`, `cid`, `event`, `result`): `void`
-
-#### Parameters
-
-| Parameter | Type |
-| ------ | ------ |
-| `to` | `string` \| `number` |
-| `cid` | `string` |
-| `event` | `string` |
-| `result` | `any` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[src/core/cluster/IPC.ts:37](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/IPC.ts#L37)
-
-***
-
 ### send()
 
-> **send**(`to`, `cid`, `data`, `event`): `void`
+> **send**(`to`, `data`, `event`, `cid`?): `void`
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
 | `to` | `string` \| `number` |
-| `cid` | `string` |
-| `data` | `any` |
-| `event` | `string` |
+| `data` | [`IPCData`](../interfaces/IPCData.mdx) |
+| `event` | [`IPCEvent`](../type-aliases/IPCEvent.mdx) |
+| `cid`? | `string` |
 
 #### Returns
 
@@ -878,7 +849,7 @@ node\_modules/@types/node/events.d.ts:720
 
 #### Defined in
 
-[src/core/cluster/IPC.ts:41](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/cluster/IPC.ts#L41)
+[src/core/cluster/IPC.ts:40](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/cluster/IPC.ts#L40)
 
 ***
 

@@ -1,9 +1,3 @@
-[**cordium.js**](../README.mdx) • **Docs**
-
-***
-
-[cordium.js](../globals.mdx) / IPCMessage
-
 # Class: IPCMessage
 
 ## Constructors
@@ -24,20 +18,41 @@
 
 #### Defined in
 
-[src/core/classes/IPCMessage.ts:25](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L25)
+[src/core/classes/IPCMessage.ts:26](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L26)
 
 ## Properties
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| `cid` | `public` | `string` | [src/core/classes/IPCMessage.ts:21](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L21) |
-| `data?` | `public` | `any` | [src/core/classes/IPCMessage.ts:22](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L22) |
-| `event?` | `public` | `null` \| `string` | [src/core/classes/IPCMessage.ts:20](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L20) |
-| `from` | `public` | `string` \| `number` | [src/core/classes/IPCMessage.ts:18](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L18) |
-| `result?` | `public` | `null` \| [`IResult`](../interfaces/IResult.mdx) | [src/core/classes/IPCMessage.ts:23](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L23) |
-| `to?` | `public` | `null` \| `string` \| `number` | [src/core/classes/IPCMessage.ts:19](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L19) |
+| `cid` | `public` | `string` | [src/core/classes/IPCMessage.ts:23](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L23) |
+| `data` | `public` | [`IPCData`](../interfaces/IPCData.mdx) | [src/core/classes/IPCMessage.ts:24](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L24) |
+| `event` | `public` | [`IPCEvent`](../type-aliases/IPCEvent.mdx) | [src/core/classes/IPCMessage.ts:22](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L22) |
+| `from` | `public` | `string` \| `number` | [src/core/classes/IPCMessage.ts:20](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L20) |
+| `to?` | `public` | `null` \| `string` \| `number` | [src/core/classes/IPCMessage.ts:21](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L21) |
 
 ## Methods
+
+### reply()
+
+> **reply**(`event`, `data`, `to`?): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `event` | [`IPCEvent`](../type-aliases/IPCEvent.mdx) |
+| `data` | [`IPCData`](../interfaces/IPCData.mdx) |
+| `to`? | `null` \| `string` \| `number` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/core/classes/IPCMessage.ts:41](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L41)
+
+***
 
 ### generateCID()
 
@@ -49,4 +64,4 @@
 
 #### Defined in
 
-[src/core/classes/IPCMessage.ts:38](https://github.com/devdimer/cordium.js/blob/5acfe627949366dc136ee1adc1bf86648eab42bb/src/core/classes/IPCMessage.ts#L38)
+[src/core/classes/IPCMessage.ts:45](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/classes/IPCMessage.ts#L45)

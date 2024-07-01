@@ -1,25 +1,24 @@
-# Class: UserManager
+# Class: MessageManager
 
 ## Extends
 
-- [`Collection`](Collection.mdx)\<[`User`](User.mdx)\>
+- [`Collection`](Collection.mdx)\<[`Message`](Message.mdx)\>
 
 ## Constructors
 
-### new UserManager()
+### new MessageManager()
 
-> **new UserManager**(`client`, `users`?): [`UserManager`](UserManager.mdx)
+> **new MessageManager**(`client`): [`MessageManager`](MessageManager.mdx)
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
 | `client` | [`Client`](Client.mdx) |
-| `users`? | [`User`](User.mdx)[] |
 
 #### Returns
 
-[`UserManager`](UserManager.mdx)
+[`MessageManager`](MessageManager.mdx)
 
 #### Overrides
 
@@ -27,7 +26,7 @@
 
 #### Defined in
 
-[src/core/managers/UserManager.ts:6](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/managers/UserManager.ts#L6)
+[src/core/managers/MessageManager.ts:6](https://github.com/devdimer/cordium.js/blob/cfa1fbbb6bea11406ac7a0f9fe16ea54d3dc8144/src/core/managers/MessageManager.ts#L6)
 
 ## Properties
 
@@ -125,11 +124,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 ### first()
 
-> **first**(): [`User`](User.mdx)
+> **first**(): [`Message`](Message.mdx)
 
 #### Returns
 
-[`User`](User.mdx)
+[`Message`](Message.mdx)
 
 #### Inherited from
 
@@ -178,7 +177,7 @@ Returns a specified element from the Map object. If the value that is associated
 
 | Type Parameter |
 | ------ |
-| `V` *extends* [`User`](User.mdx) |
+| `V` *extends* [`Message`](Message.mdx) |
 
 #### Parameters
 
@@ -250,11 +249,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ### last()
 
-> **last**(): [`User`](User.mdx)
+> **last**(): [`Message`](Message.mdx)
 
 #### Returns
 
-[`User`](User.mdx)
+[`Message`](Message.mdx)
 
 #### Inherited from
 
@@ -268,11 +267,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ### random()
 
-> **random**(): [`User`](User.mdx)
+> **random**(): [`Message`](Message.mdx)
 
 #### Returns
 
-[`User`](User.mdx)
+[`Message`](Message.mdx)
 
 #### Inherited from
 
@@ -318,7 +317,7 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 | Type Parameter |
 | ------ |
-| `V` *extends* [`User`](User.mdx) |
+| `V` *extends* [`Message`](Message.mdx) |
 
 #### Parameters
 
@@ -343,11 +342,11 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 ### toArray()
 
-> **toArray**(): [`User`](User.mdx)[]
+> **toArray**(): [`Message`](Message.mdx)[]
 
 #### Returns
 
-[`User`](User.mdx)[]
+[`Message`](Message.mdx)[]
 
 #### Inherited from
 

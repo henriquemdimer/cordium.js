@@ -1,4 +1,3 @@
- 
 import { RequestManager, RequestManagerOptions } from './rest/RequestManager';
 import { GatewayManager, ShardingOptions } from './gateway/GatewayManager';
 import { User } from './classes/User';

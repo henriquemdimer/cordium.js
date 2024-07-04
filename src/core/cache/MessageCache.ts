@@ -2,7 +2,7 @@ import { Collection } from '../classes/Collection';
 import { Message } from '../classes/Message';
 import { Client } from '../Client';
 
-export class MessageManager extends Collection<Message> {
+export class MessageCache extends Collection<Message> {
   public constructor(client: Client) {
     super();
 

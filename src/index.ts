@@ -3,16 +3,16 @@ export * from './core/Client';
 export * from './core/Constants';
 
 // Cache
-export * from './core/cache/ClientCache';
+export * from './core/cache/GuildChannelCache';
 export * from './core/cache/GuildCache';
-export * from './core/cache/TextChannelCache';
+export * from './core/cache/GuildMemberCache';
+export * from './core/cache/MessageCache';
+export * from './core/cache/UserCache';
 
 // Managers
-export * from './core/managers/UserManager';
-export * from './core/managers/GuildManager';
-export * from './core/managers/GuildMemberManager';
-export * from './core/managers/GuildChannelManager';
-export * from './core/managers/MessageManager';
+export * from './core/managers/ClientCacheManager';
+export * from './core/managers/GuildCacheManager';
+export * from './core/managers/TextChannelCacheManager';
 
 // Rest
 export * from './core/rest/RequestManager';

@@ -2,7 +2,7 @@ import { Collection } from '../classes/Collection';
 import { User } from '../classes/User';
 import { Client } from '../Client';
 
-export class UserManager extends Collection<User> {
+export class UserCache extends Collection<User> {
   public constructor(client: Client, users?: User[]) {
     super();
 

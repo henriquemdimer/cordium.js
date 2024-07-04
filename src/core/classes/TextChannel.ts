@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TextChannelCache } from '../cache/TextChannelCache';
+import { TextChannelCacheManager } from '../managers/TextChannelCacheManager';
 import { Client } from '../Client';
 import { RequestReponse } from '../rest/RequestManager';
 import { Guild } from './Guild';
@@ -20,14 +20,14 @@ export interface IMessageSendOptions {
 
 export class TextChannel extends GuildChannel {
   public lastMessageId?: string;
-  public cache: TextChannelCache;
+  public cache: TextChannelCacheManager;
   #client: Client;
 
   public constructor(client: Client, guild: Guild, data: any) {
     super(client, guild, data);
 
     this.#client = client;
-    this.cache = new TextChannelCache(client);
+    this.cache = new TextChannelCacheManager(client);
     this.lastMessageId = data.lastMessageId;
   }
 

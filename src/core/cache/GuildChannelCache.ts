@@ -6,7 +6,7 @@ import { Guild } from '../classes/Guild';
 import { GuildChannel } from '../classes/GuildChannel';
 import { TextChannel } from '../classes/TextChannel';
 
-export class GuildChannelManager extends Collection<GuildChannel> {
+export class GuildChannelCache extends Collection<GuildChannel> {
   public constructor(client: Client, guild: Guild, channels?: any[]) {
     super();
     if (!client || !(client instanceof Client)) throw new Error('GuildChannelManager(client): client is missing or invalid');

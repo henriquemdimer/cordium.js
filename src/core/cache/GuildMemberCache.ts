@@ -4,7 +4,7 @@ import { Collection } from '../classes/Collection';
 import { Guild } from '../classes/Guild';
 import { GuildMember } from '../classes/GuildMember';
 
-export class GuildMemberManager extends Collection<GuildMember> {
+export class GuildMemberCache extends Collection<GuildMember> {
   public constructor(client: Client, guild: Guild, members?: any[]) {
     super();
     if (!client || !(client instanceof Client)) throw new Error('GuildMemberManager(client): client is missing or invalid.');

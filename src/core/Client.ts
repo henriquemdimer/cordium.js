@@ -2,7 +2,7 @@
 import { RequestManager, RequestManagerOptions } from './rest/RequestManager';
 import { GatewayManager, ShardingOptions } from './gateway/GatewayManager';
 import { User } from './classes/User';
-import { ClientCache } from './cache/ClientCache';
+import { ClientCacheManager } from './managers/ClientCacheManager';
 import { ClientEvents } from './events/ClientEvents';
 
 export interface ClientOptions {
@@ -56,7 +56,7 @@ export class Client {
   /**
    * Client cache utility will store Guild objects when received from Discord gateway and API,
    */
-  public cache: ClientCache;
+  public cache: ClientCacheManager;
 
   /**
    * The client user.
@@ -94,7 +94,7 @@ export class Client {
     this.#token = token;
     this.rest = new RequestManager(this, this.#token);
     this.shards = new GatewayManager(this, this.#token);
-    this.cache = new ClientCache(this);
+    this.cache = new ClientCacheManager(this);
     this.ready = false;
     this.events = new ClientEvents();
   }

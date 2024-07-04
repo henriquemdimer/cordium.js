@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from '../Client';
-import { GuildCache } from '../cache/GuildCache';
+import { GuildCacheManager } from '../managers/GuildCacheManager';
 
 export class Guild {
   public id: string;
   public name: string;
-  public cache: GuildCache;
+  public cache: GuildCacheManager;
   public icon: string | null;
   public iconHash: string | null;
   public splash: string | null;
@@ -19,7 +19,7 @@ export class Guild {
 
     this.id = data.id;
     this.name = data.name;
-    this.cache = new GuildCache(client, this, data);
+    this.cache = new GuildCacheManager(client, this, data);
     this.icon = data.icon || null;
     this.iconHash = data.icon_hash || null;
     this.discoverySplash = data.discovery_splash || null;

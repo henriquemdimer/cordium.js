@@ -26,6 +26,8 @@
   },
   "scripts": {
     "dev": "node -r sucrase/register",
+    "dev:main": "npm run dev src/test/index.ts",
+    "dev:cluster": "npm run dev src/test/cluster.ts",
     "build": "tsup",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",

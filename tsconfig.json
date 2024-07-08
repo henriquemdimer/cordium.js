@@ -1,18 +1,18 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
-    "strictNullChecks": true,
-    "target": "es2016",
-    "moduleResolution": "Node",
-    "module": "CommonJS",
-    "declaration": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "outDir": "./build",
-    "resolveJsonModule": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"strict": true,
+		"noImplicitAny": true,
+		"esModuleInterop": true,
+		"strictNullChecks": true,
+		"target": "es2016",
+		"moduleResolution": "Node",
+		"module": "CommonJS",
+		"declaration": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"outDir": "./build",
+		"resolveJsonModule": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }

@@ -1,36 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// eslint-disable-next-line @typescript-eslint/ban-types
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
 export class Collection<T = {}> extends Map {
-  public constructor() {
-    super();
-  }
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	public get<V extends T>(key: any): V | null {
+		return super.get(key);
+	}
 
-  public get<V extends T>(key: any): V | null {
-    return super.get(key);
-  }
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	public set<V extends T>(key: any, value: V): V {
+		super.set(key, value);
+		return value;
+	}
 
-  public set<V extends T>(key: any, value: V): V {
-    super.set(key, value);
-    return value;
-  }
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	public remove(key: any): boolean {
+		return super.delete(key);
+	}
 
-  public remove(key: any): boolean {
-    return super.delete(key);
-  }
+	public toArray(): T[] {
+		return Array.from(super.values());
+	}
 
-  public toArray(): T[] {
-    return Array.from(super.values());
-  }
+	public first() {
+		return this.toArray()[0];
+	}
 
-  public first() {
-    return this.toArray()[0];
-  }
+	public last() {
+		return this.toArray()[super.size - 1];
+	}
 
-  public last() {
-    return this.toArray()[super.size - 1];
-  }
-
-  public random() {
-    return this.toArray()[Math.floor(Math.random() * super.size)];
-  }
+	public random() {
+		return this.toArray()[Math.floor(Math.random() * super.size)];
+	}
 }

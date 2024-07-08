@@ -4,13 +4,10 @@
   "description": "A multi-core vertically scalable library for interacting with the Discord API.",
   "main": "build/index.js",
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
     "@release-it/keep-a-changelog": "^5.0.0",
     "@types/node": "^20.14.2",
     "@types/ws": "^8.5.10",
     "dotenv": "^16.4.5",
-    "eslint": "^9.0.0",
-    "globals": "^15.6.0",
     "husky": "^9.0.11",
     "release-it": "^17.4.0",
     "sucrase": "^3.35.0",
@@ -18,10 +15,10 @@
     "tsup": "^8.1.0",
     "typedoc": "^0.26.3",
     "typedoc-plugin-markdown": "^4.1.0",
-    "typescript": "^5.5.2",
-    "typescript-eslint": "^7.13.1"
+    "typescript": "^5.5.2"
   },
   "dependencies": {
+    "@biomejs/biome": "^1.8.3",
     "ws": "^8.17.0"
   },
   "scripts": {
@@ -29,8 +26,10 @@
     "dev:main": "npm run dev src/test/index.ts",
     "dev:cluster": "npm run dev src/test/cluster.ts",
     "build": "tsup",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
+    "lint": "biome lint ./src",
+    "lint:fix": "biome format --write ./src",
+    "lint:fixUnsafe": "biome format --write --unsafe ./src",
+    "lint:check": "biome check ./src",
     "docs:generate": "rm -rf ./docs/pages/ && typedoc && chmod +x ./scripts/organizeDocs.sh && ./scripts/organizeDocs.sh",
     "docs:build": "cd docs && npm run build",
     "docs:serve": "cd docs && npm start",

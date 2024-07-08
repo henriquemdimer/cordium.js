@@ -5,6 +5,7 @@ tsconfig.json
 tsup.config.ts
 typedoc.config.cjs
 eslint.config.mjs
+package-lock.json
 .gitignore
 .git
 .release-it.json

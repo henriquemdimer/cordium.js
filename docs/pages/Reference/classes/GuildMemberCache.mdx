@@ -1,25 +1,26 @@
-# Class: UserManager
+# Class: GuildMemberCache
 
 ## Extends
 
-- [`Collection`](Collection.mdx)\<[`User`](User.mdx)\>
+- [`Collection`](Collection.mdx)\<[`GuildMember`](GuildMember.mdx)\>
 
 ## Constructors
 
-### new UserManager()
+### new GuildMemberCache()
 
-> **new UserManager**(`client`, `users`?): [`UserManager`](UserManager.mdx)
+> **new GuildMemberCache**(`client`, `guild`, `members`?): [`GuildMemberCache`](GuildMemberCache.mdx)
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
 | `client` | [`Client`](Client.mdx) |
-| `users`? | [`User`](User.mdx)[] |
+| `guild` | [`Guild`](Guild.mdx) |
+| `members`? | `any`[] |
 
 #### Returns
 
-[`UserManager`](UserManager.mdx)
+[`GuildMemberCache`](GuildMemberCache.mdx)
 
 #### Overrides
 
@@ -27,13 +28,14 @@
 
 #### Defined in
 
-[src/core/managers/UserManager.ts:6](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/managers/UserManager.ts#L6)
+[src/core/cache/GuildMemberCache.ts:11](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/cache/GuildMemberCache.ts#L11)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from | Defined in |
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | `[toStringTag]` | `readonly` | `string` | - | [`Collection`](Collection.mdx).`[toStringTag]` | node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:137 |
+| `guild` | `public` | [`Guild`](Guild.mdx) | - | - | [src/core/cache/GuildMemberCache.ts:8](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/cache/GuildMemberCache.ts#L8) |
 | `size` | `readonly` | `number` |  | [`Collection`](Collection.mdx).`size` | node\_modules/typescript/lib/lib.es2015.collection.d.ts:45 |
 | `[species]` | `readonly` | `MapConstructor` | - | [`Collection`](Collection.mdx).`[species]` | node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:319 |
 
@@ -123,13 +125,34 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 ***
 
-### first()
+### fetch()
 
-> **first**(): [`User`](User.mdx)
+> **fetch**(`guildId`, `memberId`): `Promise`\<[`GuildMember`](GuildMember.mdx)\>
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `guildId` | `string` |
+| `memberId` | `string` |
 
 #### Returns
 
-[`User`](User.mdx)
+`Promise`\<[`GuildMember`](GuildMember.mdx)\>
+
+#### Defined in
+
+[src/core/cache/GuildMemberCache.ts:33](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/cache/GuildMemberCache.ts#L33)
+
+***
+
+### first()
+
+> **first**(): [`GuildMember`](GuildMember.mdx)
+
+#### Returns
+
+[`GuildMember`](GuildMember.mdx)
 
 #### Inherited from
 
@@ -137,7 +160,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 #### Defined in
 
-[src/core/classes/Collection.ts:25](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L25)
+[src/core/classes/Collection.ts:23](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L23)
 
 ***
 
@@ -178,7 +201,7 @@ Returns a specified element from the Map object. If the value that is associated
 
 | Type Parameter |
 | ------ |
-| `V` *extends* [`User`](User.mdx) |
+| `V` *extends* [`GuildMember`](GuildMember.mdx) |
 
 #### Parameters
 
@@ -198,7 +221,7 @@ Returns the element associated with the specified key. If no element is associat
 
 #### Defined in
 
-[src/core/classes/Collection.ts:8](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L8)
+[src/core/classes/Collection.ts:4](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L4)
 
 ***
 
@@ -250,11 +273,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ### last()
 
-> **last**(): [`User`](User.mdx)
+> **last**(): [`GuildMember`](GuildMember.mdx)
 
 #### Returns
 
-[`User`](User.mdx)
+[`GuildMember`](GuildMember.mdx)
 
 #### Inherited from
 
@@ -262,17 +285,17 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:29](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L29)
+[src/core/classes/Collection.ts:27](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L27)
 
 ***
 
 ### random()
 
-> **random**(): [`User`](User.mdx)
+> **random**(): [`GuildMember`](GuildMember.mdx)
 
 #### Returns
 
-[`User`](User.mdx)
+[`GuildMember`](GuildMember.mdx)
 
 #### Inherited from
 
@@ -280,7 +303,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:33](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L33)
+[src/core/classes/Collection.ts:31](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L31)
 
 ***
 
@@ -304,7 +327,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:17](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L17)
+[src/core/classes/Collection.ts:15](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L15)
 
 ***
 
@@ -318,7 +341,7 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 | Type Parameter |
 | ------ |
-| `V` *extends* [`User`](User.mdx) |
+| `V` *extends* [`GuildMember`](GuildMember.mdx) |
 
 #### Parameters
 
@@ -337,17 +360,17 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:12](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L12)
+[src/core/classes/Collection.ts:9](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L9)
 
 ***
 
 ### toArray()
 
-> **toArray**(): [`User`](User.mdx)[]
+> **toArray**(): [`GuildMember`](GuildMember.mdx)[]
 
 #### Returns
 
-[`User`](User.mdx)[]
+[`GuildMember`](GuildMember.mdx)[]
 
 #### Inherited from
 
@@ -355,7 +378,7 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:21](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L21)
+[src/core/classes/Collection.ts:19](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L19)
 
 ***
 

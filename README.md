@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/cordium.js"><img alt="NPM Version" src="https://img.shields.io/npm/v/cordium.js?style=for-the-badge" /></a>
-  <a href="https://www.npmjs.com/package/cordium.js"><img alt="NPM Downloads" src="https://img.shields.io/npm/dw/cordium.js?style=for-the-badge"></a>
+  <a href="https://www.npmjs.com/package/cordium.js"><img alt="NPM Downloads" src="https://img.shields.io/npm/dw/cordium.js?style=for-the-badge" /></a>
 </p>
 <p align="center">
   <a href="https://discord.gg/7w8mgjKM9g"><img src="https://discordapp.com/api/guilds/1257710585089364172/widget.png?style=banner2" alt="Discord Banner"/></a>

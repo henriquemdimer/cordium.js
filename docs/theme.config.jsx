@@ -1,9 +1,9 @@
 export default {
 	logo: <span>Cordium.js Documentation</span>,
 	project: {
-		link: "https://github.com/devdimer/cordium.js",
+		link: "https://github.com/justheimsk/cordium.js",
 	},
-	docsRepositoryBase: "https://github.com/devdimer/cordium.js/tree/main/docs",
+	docsRepositoryBase: "https://github.com/justheimsk/cordium.js/tree/main/docs",
 	head: (
 		<>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />

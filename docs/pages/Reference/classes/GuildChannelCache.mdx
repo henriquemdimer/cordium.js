@@ -1,24 +1,26 @@
-# Class: MessageManager
+# Class: GuildChannelCache
 
 ## Extends
 
-- [`Collection`](Collection.mdx)\<[`Message`](Message.mdx)\>
+- [`Collection`](Collection.mdx)\<[`GuildChannel`](GuildChannel.mdx)\>
 
 ## Constructors
 
-### new MessageManager()
+### new GuildChannelCache()
 
-> **new MessageManager**(`client`): [`MessageManager`](MessageManager.mdx)
+> **new GuildChannelCache**(`client`, `guild`, `channels`?): [`GuildChannelCache`](GuildChannelCache.mdx)
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
 | `client` | [`Client`](Client.mdx) |
+| `guild` | [`Guild`](Guild.mdx) |
+| `channels`? | `any`[] |
 
 #### Returns
 
-[`MessageManager`](MessageManager.mdx)
+[`GuildChannelCache`](GuildChannelCache.mdx)
 
 #### Overrides
 
@@ -26,13 +28,14 @@
 
 #### Defined in
 
-[src/core/managers/MessageManager.ts:6](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/managers/MessageManager.ts#L6)
+[src/core/cache/GuildChannelCache.ts:13](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/cache/GuildChannelCache.ts#L13)
 
 ## Properties
 
 | Property | Modifier | Type | Description | Inherited from | Defined in |
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | `[toStringTag]` | `readonly` | `string` | - | [`Collection`](Collection.mdx).`[toStringTag]` | node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:137 |
+| `guild` | `public` | [`Guild`](Guild.mdx) | - | - | [src/core/cache/GuildChannelCache.ts:10](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/cache/GuildChannelCache.ts#L10) |
 | `size` | `readonly` | `number` |  | [`Collection`](Collection.mdx).`size` | node\_modules/typescript/lib/lib.es2015.collection.d.ts:45 |
 | `[species]` | `readonly` | `MapConstructor` | - | [`Collection`](Collection.mdx).`[species]` | node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:319 |
 
@@ -122,13 +125,33 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 ***
 
-### first()
+### fetch()
 
-> **first**(): [`Message`](Message.mdx)
+> **fetch**(`id`): `Promise`\<`undefined` \| [`GuildChannel`](GuildChannel.mdx)\>
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `id` | `string` |
 
 #### Returns
 
-[`Message`](Message.mdx)
+`Promise`\<`undefined` \| [`GuildChannel`](GuildChannel.mdx)\>
+
+#### Defined in
+
+[src/core/cache/GuildChannelCache.ts:41](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/cache/GuildChannelCache.ts#L41)
+
+***
+
+### first()
+
+> **first**(): [`GuildChannel`](GuildChannel.mdx)
+
+#### Returns
+
+[`GuildChannel`](GuildChannel.mdx)
 
 #### Inherited from
 
@@ -136,7 +159,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 #### Defined in
 
-[src/core/classes/Collection.ts:25](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L25)
+[src/core/classes/Collection.ts:23](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L23)
 
 ***
 
@@ -177,7 +200,7 @@ Returns a specified element from the Map object. If the value that is associated
 
 | Type Parameter |
 | ------ |
-| `V` *extends* [`Message`](Message.mdx) |
+| `V` *extends* [`GuildChannel`](GuildChannel.mdx) |
 
 #### Parameters
 
@@ -197,7 +220,7 @@ Returns the element associated with the specified key. If no element is associat
 
 #### Defined in
 
-[src/core/classes/Collection.ts:8](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L8)
+[src/core/classes/Collection.ts:4](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L4)
 
 ***
 
@@ -249,11 +272,11 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ### last()
 
-> **last**(): [`Message`](Message.mdx)
+> **last**(): [`GuildChannel`](GuildChannel.mdx)
 
 #### Returns
 
-[`Message`](Message.mdx)
+[`GuildChannel`](GuildChannel.mdx)
 
 #### Inherited from
 
@@ -261,17 +284,17 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:29](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L29)
+[src/core/classes/Collection.ts:27](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L27)
 
 ***
 
 ### random()
 
-> **random**(): [`Message`](Message.mdx)
+> **random**(): [`GuildChannel`](GuildChannel.mdx)
 
 #### Returns
 
-[`Message`](Message.mdx)
+[`GuildChannel`](GuildChannel.mdx)
 
 #### Inherited from
 
@@ -279,7 +302,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:33](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L33)
+[src/core/classes/Collection.ts:31](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L31)
 
 ***
 
@@ -303,7 +326,7 @@ node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 #### Defined in
 
-[src/core/classes/Collection.ts:17](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L17)
+[src/core/classes/Collection.ts:15](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L15)
 
 ***
 
@@ -317,7 +340,7 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 | Type Parameter |
 | ------ |
-| `V` *extends* [`Message`](Message.mdx) |
+| `V` *extends* [`GuildChannel`](GuildChannel.mdx) |
 
 #### Parameters
 
@@ -336,17 +359,17 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:12](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L12)
+[src/core/classes/Collection.ts:9](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L9)
 
 ***
 
 ### toArray()
 
-> **toArray**(): [`Message`](Message.mdx)[]
+> **toArray**(): [`GuildChannel`](GuildChannel.mdx)[]
 
 #### Returns
 
-[`Message`](Message.mdx)[]
+[`GuildChannel`](GuildChannel.mdx)[]
 
 #### Inherited from
 
@@ -354,7 +377,7 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-[src/core/classes/Collection.ts:21](https://github.com/devdimer/cordium.js/blob/06472310c5bbe29a93ef738128bd60352268a62b/src/core/classes/Collection.ts#L21)
+[src/core/classes/Collection.ts:19](https://github.com/justheimsk/cordium.js/blob/1bf2a638b90afa5ef4b22005e7b70c138a2c2b3e/src/core/classes/Collection.ts#L19)
 
 ***
 

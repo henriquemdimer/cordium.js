@@ -33,7 +33,7 @@
     "docs:generate": "rm -rf ./docs/pages/ && typedoc && chmod +x ./scripts/organizeDocs.sh && ./scripts/organizeDocs.sh",
     "docs:build": "cd docs && npm run build",
     "docs:serve": "cd docs && npm start",
-    "release": "npm run docs:generate && release-it",
+    "release": "release-it",
     "prepare": "husky"
   },
   "repository": {

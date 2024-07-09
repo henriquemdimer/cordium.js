@@ -8,5 +8,4 @@ export default defineConfig({
 	skipNodeModulesBundle: true,
 	clean: true,
 	outDir: "./build",
-	minify: "terser",
 });

@@ -174,6 +174,6 @@ import { ClusterManager, Intents } from 'cordium.js';
 - [ ] Support plugins
 
 ## Contributors
-<a href="https://github.com/justheimsk/cordium.js/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=justheimsk/cordium.js" />
+<a href="https://github.com/henriquemdimer/cordium.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=henriquemdimer/cordium.js" />
 </a>

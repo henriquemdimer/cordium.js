@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devdimer/cordium.js.git"
+    "url": "git+https://github.com/henriquemdimer/cordium.js.git"
   },
   "keywords": [
     "discord",
@@ -50,10 +50,10 @@
     "clustering",
     "api"
   ],
-  "author": "vonderheimsk",
+  "author": "henriquemdimer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devdimer/cordium.js/issues"
+    "url": "https://github.com/henriquemdimer/cordium.js/issues"
   },
   "homepage": "https://cordiumjs.vercel.app"
 }
